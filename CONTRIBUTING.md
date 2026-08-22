@@ -4,7 +4,7 @@ CAREC welcomes software, simulation, safety, documentation, accessibility, and r
 
 ## Before you begin
 
-Read the [project aim](docs/vision/PROJECT_AIM.md), [team workflow](docs/contributors/TEAM_WORKFLOW.md), and [first contribution guide](docs/contributors/FIRST_CONTRIBUTION.md).
+Read the [product definition](PRODUCT.md), [project aim](docs/vision/PROJECT_AIM.md), [team workflow](docs/contributors/TEAM_WORKFLOW.md), and [first contribution guide](docs/contributors/FIRST_CONTRIBUTION.md).
 
 This is safety-related assistive technology. Community builds are research software and must not be connected to an occupied wheelchair.
 

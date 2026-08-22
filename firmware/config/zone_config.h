@@ -8,12 +8,13 @@
 //   ZONE_YELLOW : DIST_RED – DIST_YELLOW → YELLOW display (slow blink) + BEEP_WARNING
 //   ZONE_GREEN  : DIST_YELLOW+ cm        → GREEN display (solid on) + silence
 //
-// Calibration test points (representative mid-zone values):
-//   30 cm  → reliably RED zone
-//   80 cm  → reliably YELLOW zone
-//  120 cm  → reliably GREEN zone
+// Classification test points (not physical accuracy claims):
+//   30 cm  → RED zone
+//   80 cm  → YELLOW zone
+//  120 cm  → GREEN zone
 //
-// To recalibrate: run tests/integration/obstacle_test.py after adjusting values.
+// After changing values, run tests/obstacle_test.py. Physical calibration and
+// validation require a separate owner-controlled protocol.
 
 #pragma once
 

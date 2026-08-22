@@ -34,7 +34,7 @@ jobs:
 
       - name: Run obstacle tests
         run: |
-          pytest tests/obstacle_test.py -v \
+          pytest tests/obstacle_test.py tests/unit -v \
             --json-report \
             --json-report-file=tests/results/ci_results.json
 
@@ -45,6 +45,14 @@ jobs:
             tests/cpp/safety_decision_test.cpp \
             -o /tmp/carec_safety_decision_test
           /tmp/carec_safety_decision_test
+
+      - name: Compile and run portable health supervisor test
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror \
+            -Ifirmware/main \
+            tests/cpp/health_supervisor_test.cpp \
+            -o /tmp/carec_health_supervisor_test
+          /tmp/carec_health_supervisor_test
 
       - name: Upload test results
         uses: actions/upload-artifact@v4

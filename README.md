@@ -59,7 +59,10 @@ The repository contains an earlier SenseCAP Watcher obstacle-warning firmware pr
 
 The simulation-first autonomy workspace is at its foundation stage: the development container, status schema, issue structure, and CI checks exist, but the ROS packages, digital wheelchair, and safety kernel are not yet implemented.
 
-See the evidence-based [project scorecard](docs/status/PROJECT_SCORECARD.md), [roadmap](ROADMAP.md), and [project log](PROJECT_LOG.md).
+See the approved research baseline in [PRODUCT.md](PRODUCT.md), the
+[capability levels](docs/specifications/AUTONOMY_LEVELS.md), evidence-based
+[project scorecard](docs/status/PROJECT_SCORECARD.md), [roadmap](ROADMAP.md),
+and [project log](PROJECT_LOG.md).
 
 Work is organized in the current [GitHub issue backlog](https://github.com/vinodkumar1947/CAREC-Project/issues) and five simulation-first milestones. Closed issues labeled `legacy` belong to the previous hardware-first plan.
 
@@ -92,7 +95,10 @@ research/       Research writing and references
 .github/        Contribution forms, ownership, and CI
 ```
 
-Planned additions include simulation packages, scenario libraries, evaluation reports, and an owner-controlled `hardware_bridge/`.
+The first dependency-free reference simulator and safety fault suite live in
+`autonomy_ws/carec_simulation/` and `tests/unit/`. ROS 2/Gazebo packages,
+expanded scenario libraries, evaluation reports, and an owner-controlled
+`hardware_bridge/` remain planned.
 
 The initial contributor environment is available through [the development container](.devcontainer/devcontainer.json). After opening the repository in the container, run:
 

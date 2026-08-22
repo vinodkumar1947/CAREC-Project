@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "scenario_set": "baseline-safety",
+  "deterministic_seed": 1947,
+  "scenarios": [
+    {"id": "SCN-001", "name": "clear corridor", "expected": "OK"},
+    {"id": "SCN-002", "name": "forward obstacle", "expected": "OBSTACLE_STOP"},
+    {"id": "SCN-003", "name": "stale command", "expected": "COMMAND_STALE"},
+    {"id": "SCN-004", "name": "stale sensor", "expected": "SENSOR_STALE"},
+    {"id": "SCN-005", "name": "invalid localization", "expected": "LOCALIZATION_INVALID"},
+    {"id": "SCN-006", "name": "latched emergency stop", "expected": "ESTOP_LATCHED"}
+  ]
+}

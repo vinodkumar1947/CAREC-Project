@@ -1,0 +1,31 @@
+name: Bug report
+description: Report reproducible incorrect software or simulation behavior
+title: "bug: "
+labels: ["bug", "triage"]
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed and expected behavior
+      description: Do not include credentials or identifiable participant data.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Commit or version
+    validations:
+      required: true
+  - type: dropdown
+    id: safety
+    attributes:
+      label: Possible safety impact
+      options: ["Unknown", "None", "S0", "S1", "S2", "S3"]
+    validations:
+      required: true

@@ -28,15 +28,18 @@
 #endif
 
 #if !defined(DISPLAY_TEST) && !defined(LED_TEST) && !defined(SPEAKER_TEST)
-#include <WiFi.h>
 #include "sensecraft_detection.h"
 #include "distance_estimator.h"
 #include "safety_decision.h"
 #include "directional_beep_patterns.h"
 #include "motion_detector.h"
 #include "ble_logger.h"
-#include "wifi_ota.h"
 #include "led_status.h"
+#include "health_supervisor.h"
+#if FEATURE_WIFI_OTA
+#include <WiFi.h>
+#include "wifi_ota.h"
+#endif
 #endif
 
 #ifdef SPEAKER_TEST
@@ -152,6 +155,7 @@ static int zone_to_beep(int zone) {
 #endif
 
 static void wifi_connect() {
+#if FEATURE_WIFI_OTA
     Serial.printf("[WiFi] Connecting to %s", WIFI_SSID);
     WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
     for (int i = 0; i < 20 && WiFi.status() != WL_CONNECTED; i++) {
@@ -162,6 +166,10 @@ static void wifi_connect() {
         Serial.printf("\n[WiFi] Connected: %s\n", WiFi.localIP().toString().c_str());
     else
         Serial.println("\n[WiFi] Not connected — OTA disabled, detection continues");
+    Serial.println("[WiFi] DEVELOPMENT OTA ENABLED — do not use during operation");
+#else
+    Serial.println("[WiFi] disabled; use owner-controlled wired flashing");
+#endif
 }
 
 static void carec_setup() {
@@ -174,14 +182,18 @@ static void carec_setup() {
     beep_init();         // ES8311 codec + I2S0
     motion_init();       // always-forward stub (Phase 1)
     ble_logger_init();   // BLE GATT Nordic UART Service
-    wifi_connect();      // WiFi for OTA (non-blocking on fail)
+    wifi_connect();      // disabled by default; development use only
 
     Serial.println("CAREC ready.");
 }
 
 static void carec_loop() {
+    static uint32_t last_detector_ok_ms = 0;
+    static uint32_t previous_loop_duration_ms = 0;
+    const uint32_t loop_started_ms = millis();
     // 1. Detect obstacles via Himax SSCMA
     DetectionResult result = sensecraft_detect();
+    if (result.status == DETECTION_OK) last_detector_ok_ms = millis();
     log_detections(&result);
     log_distances(&result);
 
@@ -192,6 +204,15 @@ static void carec_loop() {
     SafetyDecision decision = decide_safety_zone(result.status, measured_dist_cm);
     float dist_cm = decision.distance_cm;
     int zone = decision.zone;
+    const SystemHealth health = evaluate_system_health(
+        result.status == DETECTION_OK, millis(), last_detector_ok_ms,
+        previous_loop_duration_ms);
+    if (!health.safe_to_operate) {
+        zone = ZONE_RED;
+        dist_cm = 0.0f;
+        Serial.printf("[Safety] system degraded (reason=%d) → RED fail-safe\n",
+                      static_cast<int>(health.reason));
+    }
     if (decision.detector_degraded) {
         Serial.printf("[Safety] detector unavailable (status=%d) → RED fail-safe\n",
                       static_cast<int>(result.status));
@@ -214,10 +235,16 @@ static void carec_loop() {
     // 6. BLE notification to caregiver app
     ble_log_event(dist_cm, zone, MOTION_FORWARD);
 
-    // 7. OTA — only when clear path (no obstacle interruption risk)
+    // 7. Development-only OTA. GREEN is not proof of stationary state, so
+    // production builds keep FEATURE_WIFI_OTA=0 and use wired flashing.
+#if FEATURE_WIFI_OTA
     ota_set_safe(zone == ZONE_GREEN);
     ota_check_and_update();
+#endif
 
+    // The completed-cycle duration is evaluated on the next cycle. The delay is
+    // deliberately excluded; this measures processing and I/O execution time.
+    previous_loop_duration_ms = millis() - loop_started_ms;
     vTaskDelay(pdMS_TO_TICKS(100));
 }
 

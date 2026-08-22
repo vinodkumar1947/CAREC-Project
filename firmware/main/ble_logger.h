@@ -19,7 +19,8 @@
 // UUIDs — Nordic UART Service (NUS):
 //   Service:    6E400001-B5A3-F393-E0A9-E50E24DCCA9E
 //   TX (notify): 6E400003-B5A3-F393-E0A9-E50E24DCCA9E  ← phone reads events here
-//   RX (write):  6E400002-B5A3-F393-E0A9-E50E24DCCA9E  ← reserved for Phase 2 commands
+//   RX commands are intentionally not exposed. Safety-relevant configuration
+//   requires an authenticated, authorized protocol that is not implemented.
 //
 // Public API:
 //   ble_logger_init()                    — call once in setup()
@@ -33,7 +34,6 @@
 
 #define BLE_NUS_SERVICE_UUID  "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 #define BLE_NUS_TX_CHAR_UUID  "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
-#define BLE_NUS_RX_CHAR_UUID  "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 #define BLE_DEVICE_NAME       "CAREC-Watcher"
 
 // ── State ────────────────────────────────────────────────────────────────────
@@ -94,13 +94,6 @@ inline void ble_logger_init() {
         BLECharacteristic::PROPERTY_NOTIFY
     );
     _ble_tx_char->addDescriptor(new BLE2902());
-
-    // RX: phone → device (write, reserved for Phase 2 threshold commands)
-    BLECharacteristic* rx = svc->createCharacteristic(
-        BLE_NUS_RX_CHAR_UUID,
-        BLECharacteristic::PROPERTY_WRITE
-    );
-    (void)rx;
 
     svc->start();
 

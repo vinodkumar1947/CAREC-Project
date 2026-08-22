@@ -1,23 +1,24 @@
 // build_flags.h — CAREC compile-time feature flags
 //
 // Toggle subsystems here without editing source files.
-// All flags default to enabled (1). Set to 0 to disable.
+// Safety-sensitive network features default off. Enable only in an explicitly
+// reviewed development build; this file is not a production configuration.
 
 #pragma once
 
 // ── Core features ─────────────────────────────────────────────────────────────
 
-// Enable the optical-flow motion gate.
-// When 0, detection runs every loop (wastes power, higher false-positive rate).
-#define FEATURE_MOTION_GATE     1
+// Motion sensing is not implemented on the current prototype.  Never use the
+// always-forward stub to prove that the chair is stationary.
+#define FEATURE_MOTION_GATE     0
 
 // Enable BLE GATT event logging to SenseCraft Mate app.
 // When 0, ble_log_event() is a no-op (saves ~40 KB flash).
 #define FEATURE_BLE_LOGGING     1
 
-// Enable WiFi + OTA firmware updates.
-// When 0, WiFi is not initialised (lower boot time, no OTA).
-#define FEATURE_WIFI_OTA        1
+// OTA remains disabled until maintenance-state gating, signed metadata,
+// authenticated transport, rollback confirmation, and release evidence exist.
+#define FEATURE_WIFI_OTA        0
 
 // Enable the 1.45" display driver.
 // When 0, display_update() is a no-op (useful for headless bench testing).

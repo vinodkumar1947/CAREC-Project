@@ -1,134 +1,29 @@
-# CAREC Failure Mode Analysis
+# CAREC Hazard Log
 
-**Device:** SenseCAP Watcher W1-A  
-**Standard:** Informal FMEA (Failure Mode and Effects Analysis)
+This is a living engineering risk record governed by `SAFETY_PLAN.md`. Risk
+ratings are provisional until severity/probability definitions and appropriate
+domain review are approved. No entry authorizes occupied use.
 
----
+| ID | Hazardous situation / possible harm | Initial concern | Control requirement | Verification | Residual status |
+|---|---|---|---|---|---|
+| HAZ-001 | Obstacle is missed and motion continues; collision/injury | Critical | REQ-SAFE-004, sensor coverage and ODD limits | TST-SAFE-004 plus future perception suite | Open |
+| HAZ-002 | Stale command continues motion; collision | Critical | REQ-SAFE-001 | TST-SAFE-001 | Controlled in reference sim; physical open |
+| HAZ-003 | Stale sensor is treated as clear; collision | Critical | REQ-SAFE-002 | TST-SAFE-002 | Controlled in reference sim; physical open |
+| HAZ-004 | Invalid localization permits navigation | Critical | REQ-SAFE-003 | TST-SAFE-003 | Controlled in reference sim; physical open |
+| HAZ-005 | E-stop clears without deliberate authorization | Critical | REQ-SAFE-005 | TST-SAFE-005 | Controlled in reference sim; physical open |
+| HAZ-006 | Excessive requested velocity causes unstable or late stop | Critical | REQ-SAFE-006 | TST-SAFE-006 | Controlled in reference sim; profile validation open |
+| HAZ-007 | Software freeze or loop overrun removes warning/control | Critical | REQ-FW-001 | TST-FW-001 | Partial; hardware watchdog open |
+| HAZ-008 | Update starts during operation or malicious firmware loads | Critical | REQ-CYB-001 | Configuration review | OTA disabled; secure update open |
+| HAZ-009 | Unauthorized BLE command changes safety behavior | Critical | REQ-CYB-002 | Interface review | Write command removed; authenticated design open |
+| HAZ-010 | Camera model returns no recognized object and path is treated clear | Critical | REQ-PER-001 | Future negative-obstacle and unknown-object suite | Open; monocular warning only |
+| HAZ-011 | Cliff/stair/drop-off is outside sensor capability | Critical | REQ-PER-002 | Future dedicated scenario/sensor tests | Open |
+| HAZ-012 | Adapter mismatch or electrical fault commands unintended motion | Critical | REQ-ADP-001 | Per-model bench validation | Open; community hardware prohibited |
+| HAZ-013 | Mount/cable detaches or entangles chair | Critical | REQ-HW-001 | Mechanical inspection and bench protocol | Open |
+| HAZ-014 | Alerts cause distress, confusion or alert fatigue | High | REQ-HFE-001 | User-centered formative evaluation | Open |
+| HAZ-015 | Telemetry exposes user behavior or identity | High | REQ-PRV-001 | Privacy/security review | Open |
+| HAZ-016 | Simulation behavior does not transfer to physical dynamics | Critical | REQ-VV-001 | Model correlation and unoccupied bench tests | Open |
 
-## Risk Matrix
-
-| Severity | Probability | Risk Level |
-|----------|-------------|------------|
-| HIGH (injury possible) | Any | CRITICAL — must mitigate |
-| MEDIUM (nuisance/false alarm) | High | HIGH |
-| LOW (feature degraded) | Any | LOW |
-
----
-
-## Failure Modes
-
-### FM-01: No Alert When Obstacle Present (False Negative)
-
-| Field | Detail |
-|-------|--------|
-| **Failure Mode** | Obstacle present but no RED/YELLOW alert triggered |
-| **Effect** | Wheelchair collides with obstacle |
-| **Severity** | HIGH |
-| **Causes** | Camera lens obscured; detection model misses small/low objects; CAREC powered off; firmware frozen |
-| **Detection** | Pre-use 30 cm hand test; periodic spot checks |
-| **Mitigation** | 1. Clear lens pre-use checklist. 2. `tests/obstacle_test.py` 50-scenario matrix. 3. CAREC is a *warning aid*, not a safety stop — caregiver supervision required. 4. Watchdog timer (future) to detect firmware freeze. |
-| **Residual Risk** | MEDIUM — caregiver remains primary safety gate |
-
----
-
-### FM-02: Continuous False Alarm (False Positive)
-
-| Field | Detail |
-|-------|--------|
-| **Failure Mode** | Constant RED/beeping with no obstacle |
-| **Effect** | Alert fatigue, child distress, caregiver ignores future real alerts |
-| **Severity** | MEDIUM |
-| **Causes** | Shadow/reflection triggering NPU; motion gate failure; firmware bug |
-| **Detection** | 30-minute empty-room false positive test |
-| **Mitigation** | 1. Motion gate: suppress all alerts when wheelchair stationary. 2. Rate-limit BLE events. 3. `DEBUG_VERBOSE` logging to identify pattern. |
-| **Residual Risk** | LOW — motion gate eliminates most static false positives |
-
----
-
-### FM-03: Device Falls Off Wheelchair
-
-| Field | Detail |
-|-------|--------|
-| **Failure Mode** | Tube clamp loosens; Watcher detaches during use |
-| **Effect** | Watcher hits ground; USB-C cable tangle risk; loss of safety coverage |
-| **Severity** | HIGH |
-| **Causes** | Insufficient clamp torque; vibration over time; child interference |
-| **Detection** | Pre-use shake test; visual inspection |
-| **Mitigation** | 1. Stainless tube clamp rated for 5 kg+. 2. Pre-use shake test (item in safety_checklist.md). 3. Weekly re-tightening schedule. |
-| **Residual Risk** | LOW |
-
----
-
-### FM-04: USB-C Cable Caught in Wheel
-
-| Field | Detail |
-|-------|--------|
-| **Failure Mode** | Loose cable wraps around wheel axle |
-| **Effect** | Wheelchair stops suddenly; cable damage; potential fall |
-| **Severity** | HIGH |
-| **Causes** | Poor cable routing; cable too long; velcro tie failure |
-| **Detection** | Visual inspection during mounting; post-ride check |
-| **Mitigation** | 1. Use shortest cable that reaches battery. 2. Velcro cable ties every 20 cm. 3. Route cable on armrest interior side. |
-| **Residual Risk** | LOW |
-
----
-
-### FM-05: Battery Depletion During Use
-
-| Field | Detail |
-|-------|--------|
-| **Failure Mode** | 10,000 mAh battery runs out |
-| **Effect** | CAREC powers off; no obstacle detection |
-| **Severity** | MEDIUM |
-| **Causes** | Battery not charged before session; higher than expected draw |
-| **Detection** | Battery LED indicator; SenseCraft Mate battery status |
-| **Mitigation** | 1. Pre-use battery check (≥ 20%). 2. 10,000 mAh → 50+ hr runtime. 3. Low-battery BLE alert (future feature). |
-| **Residual Risk** | LOW |
-
----
-
-### FM-06: OTA Update During Active Use
-
-| Field | Detail |
-|-------|--------|
-| **Failure Mode** | Firmware update starts while wheelchair is moving |
-| **Effect** | Device reboots mid-use; brief loss of obstacle detection |
-| **Severity** | HIGH |
-| **Causes** | OTA safety gate bypassed; WiFi reconnects in active zone |
-| **Detection** | Code review of `ota_set_safe()` logic |
-| **Mitigation** | 1. `ota_set_safe(zone == ZONE_GREEN)` — OTA only when GREEN. 2. `ota_set_safe(true)` only in STATIONARY branch. 3. `ota_check_and_update()` checks flag before downloading. |
-| **Residual Risk** | LOW — double-gated (zone + motion) |
-
----
-
-### FM-07: BLE/WiFi Interference
-
-| Field | Detail |
-|-------|--------|
-| **Failure Mode** | BLE or WiFi connection drops |
-| **Effect** | Caregiver app loses live updates |
-| **Severity** | LOW (on-device alerts still work) |
-| **Causes** | 2.4 GHz congestion; distance > 30 m BLE range |
-| **Detection** | SenseCraft Mate connection indicator |
-| **Mitigation** | 1. On-device beep+display works independently of BLE/WiFi. 2. Reconnect logic in `wifi_ota.h`. 3. BLE events queued and retried (future). |
-| **Residual Risk** | LOW |
-
----
-
-## Summary Risk Register
-
-| ID | Failure Mode | Severity | Mitigated Risk |
-|----|-------------|----------|---------------|
-| FM-01 | False negative (miss obstacle) | HIGH | MEDIUM (caregiver backup) |
-| FM-02 | False positive (constant alarm) | MEDIUM | LOW |
-| FM-03 | Device falls off | HIGH | LOW |
-| FM-04 | Cable in wheel | HIGH | LOW |
-| FM-05 | Battery depletion | MEDIUM | LOW |
-| FM-06 | OTA during use | HIGH | LOW |
-| FM-07 | BLE/WiFi drop | LOW | LOW |
-
-**Overall safety posture:** CAREC is a *warning aid*, not an autonomous safety system. FM-01 residual risk is acceptable only with caregiver supervision. Never use CAREC as a substitute for caregiver attention.
-
----
-
-*Last Updated: May 4, 2026*
+Historical battery, mounting, motion-gate and residual-risk claims were removed
+because measured evidence was not present. New hazards must be added whenever a
+change introduces a new energy source, command path, sensor, user interaction,
+environment or external dependency.

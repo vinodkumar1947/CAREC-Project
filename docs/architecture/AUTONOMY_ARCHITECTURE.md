@@ -18,6 +18,12 @@ Simulator       Owner-only physical adapter
 
 The navigation stack may request motion. Only the safety supervisor may publish a command to a platform adapter.
 
+The dependency-free `autonomy_ws/carec_simulation` module is the executable
+reference contract for command expiry, stale sensors, E-stop latching,
+localization validity, obstacle stopping and velocity limits. Future ROS 2
+packages must preserve these behaviors and reason codes. See
+`docs/specifications/SAFETY_MCU_AND_ADAPTER.md` for the physical boundary.
+
 ## Planned packages
 
 | Package | Responsibility |

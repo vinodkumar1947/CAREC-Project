@@ -22,6 +22,9 @@ jobs:
       - name: Validate project status
         run: python3 scripts/validate_status.py
 
+      - name: Validate requirements and safety traceability
+        run: python3 scripts/validate_traceability.py
+
       - name: Check contributor bootstrap
         run: ./scripts/bootstrap.sh --check
 
