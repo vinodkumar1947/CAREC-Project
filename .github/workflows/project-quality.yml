@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
 
       - name: Validate project status
         run: python3 scripts/validate_status.py
@@ -24,4 +26,4 @@ jobs:
         run: ./scripts/bootstrap.sh --check
 
       - name: Check whitespace
-        run: git diff-tree --check --no-commit-id --root -r HEAD
+        run: git diff --check HEAD^ HEAD
