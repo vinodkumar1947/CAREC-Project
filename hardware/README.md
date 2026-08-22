@@ -1,80 +1,49 @@
-# Hardware — CAREC Wheelchair Safety System
+# CAREC Hardware Boundary
 
-**Device:** SenseCAP Watcher W1-A Clear Enclosure — The Physical AI Agent for Smarter Spaces  
-**Mount:** Ball joint + tube clamp (non-invasive, no drilling)
+> CAREC Sim requires no physical hardware. This directory records the single owner-controlled prototype and possible future integration requirements. It is not a shopping guide or deployment authorization.
 
----
+## Current prototype
 
-## Mounting Design
+The repository retains experimental documentation for one SenseCAP Watcher W1-A obstacle-warning device and a removable camera-mount concept. This hardware does not provide autonomous navigation or universal wheelchair compatibility.
 
-```
-SenseCAP Watcher W1-A
-    ↓ 1/4" thread
-Ball Joint (360° rotation + ±80° tilt)
-    ↓
-Tube Clamp (1–1.5" adjustable, stainless steel)
-    ↓
-Wheelchair Armrest (Numotion power wheelchair)
-```
+No contributor is expected to buy, borrow, receive, mount, or flash:
 
-**Install:** 5 minutes | **Remove:** 2 minutes | **Damage:** Zero
+- a wheelchair;
+- a camera or LiDAR;
+- an embedded controller;
+- a motor interface;
+- a GPU; or
+- prototype mounting hardware.
 
----
+## Compatibility rule
 
-## Assembly Steps
+There is no universal powered-wheelchair electrical or mechanical interface. CAREC separates:
 
-1. Thread ball joint onto SenseCAP Watcher (1/4" standard mount)
-2. Attach tube clamp to ball joint stud
-3. Measure armrest diameter (target: 1–1.5")
-4. Open clamp, slide around armrest, tighten — finger-tight + 1/4 turn
-5. Adjust camera angle — point forward at ~45° downward tilt
-6. Plug in USB-C from external battery pack
-7. Test: camera 120° FOV covers obstacle zone ahead of wheels
+1. a platform-agnostic autonomy core;
+2. configurable simulation profiles; and
+3. individually reviewed and validated physical adapters.
 
----
+A simulation profile does not certify a physical wheelchair. Manual wheelchairs require a separate powered drive system.
 
-## Camera Placement
+## Owner-only physical work
 
-```
-              FRONT OF WHEELCHAIR
-    ┌──────────────────────────────┐
-    │                              │
-    │   SenseCAP Watcher W1-A      │ ← mounted on armrest
-    │   120° FOV (forward-facing)  │
-    │                              │
-    └──────────────────────────────┘
-         ↓ sees obstacle zone
-    [obstacle]  [obstacle]  [obstacle]
-```
+Physical experiments, when authorized later, must progress through:
 
-- Camera is forward-facing (detects obstacles in path)
-- 120° horizontal FOV covers full wheelchair width + margins
-- Distance thresholds: 0–60cm RED (BEEP_CRITICAL), 60–100cm YELLOW (BEEP_WARNING), 100+cm GREEN (silent)
+1. interface review and hazard analysis;
+2. simulation regression evidence;
+3. hardware-in-the-loop bench testing;
+4. wheels-raised testing;
+5. tethered, unoccupied, low-speed testing;
+6. supervised evaluation under an approved protocol.
 
----
+Community code must never communicate directly with wheelchair motors. The future `hardware_bridge/` remains disabled by default and accepts commands only from the independent safety supervisor.
 
-## Power
+## Purchasing policy
 
-- External LiPo 10000mAh 3.7V via USB-C → 50+ hours runtime
-- SenseCAP Watcher internal battery: ~6 hours (use external for daily use)
-- Charging: USB-C (standard 5V)
+Do not purchase additional hardware during the contributor-foundation or digital-wheelchair milestones. Hardware selection begins only after simulation has measured required range, field of view, latency, compute, power, braking behavior, and interface needs.
 
----
+The legacy [bill of materials](BOM.md), [hardware status](../docs/specifications/HARDWARE_STATUS_UPDATE.md), and [mounting guide](../docs/guides/mounting_guide.md) are retained for provenance; their prices and deployment claims are not current commitments.
 
-## Expansion (Phase 2+)
+## Datasheets
 
-The SenseCAP Watcher has Grove IIC + GPIO headers for adding:
-- Additional ultrasonic sensors (rear obstacle detection)
-- External buzzer (if internal 1W speaker isn't loud enough in noisy environments)
-
----
-
-## Files (Coming Soon)
-
-- `schematics/carec_mount_diagram.pdf` — mounting assembly diagram
-- `3d-models/armrest_clamp_adapter.stl` — custom adapter if needed
-
-## See Also
-
-- [Bill of Materials](BOM.md) — what was ordered and costs
-- [Hardware Status Update](../docs/specifications/HARDWARE_STATUS_UPDATE.md) — delivery timeline
+See [datasheets/README.md](datasheets/README.md) for legacy prototype references. Future components must be added only with a documented requirement and architecture decision.

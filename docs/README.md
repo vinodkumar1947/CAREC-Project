@@ -13,10 +13,11 @@ This index separates the active simulation-first program from the retained firmw
 | [First contribution](contributors/FIRST_CONTRIBUTION.md) | Safe onboarding exercise |
 | [Team workflow](contributors/TEAM_WORKFLOW.md) | Workstreams, review, access, and asynchronous coordination |
 | [Contribution policy](../CONTRIBUTING.md) | Git workflow, definition of done, safety levels, licensing |
+| [Current GitHub issues](https://github.com/vinodkumar1947/CAREC-Project/issues) | Assigned, scoped work and milestone status |
 
 ## Legacy firmware prototype
 
-Documents under `api/`, `guides/`, `safety/`, `specifications/`, and the root-level firmware architecture describe the earlier SenseCAP obstacle-warning prototype. They are retained as research evidence and do not define the current autonomy roadmap.
+Documents under `api/`, `guides/`, `safety/`, `specifications/`, and the root-level firmware architecture describe the earlier SenseCAP obstacle-warning prototype. They are retained as research evidence and do not define the current autonomy roadmap. Corresponding GitHub issues are closed and labeled `legacy`.
 
 Important limitations:
 

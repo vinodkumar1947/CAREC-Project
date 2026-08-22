@@ -1,67 +1,63 @@
 # CAREC Tests
 
-## Structure
+The current tests protect the retained firmware decision logic while the ROS 2 scenario framework is being designed. They are not evidence of physical wheelchair safety.
 
-```
+## Current structure
+
+```text
 tests/
-├── obstacle_test.py          # Main integration test suite (run this)
-├── conftest.py               # pytest configuration
-├── README.md                 # This file
-│
-├── integration/              # Integration tests (Python, run against firmware output)
-│   └── README.md
-├── unit/                     # C++ unit tests (future — requires GoogleTest)
-│   └── .gitkeep
-├── fixtures/                 # Shared test data
+├── cpp/
+│   └── safety_decision_test.cpp  portable production C++ safety boundary
+├── obstacle_test.py              legacy Python behavior and fixture tests
+├── conftest.py                   shared Python constants and helpers
+├── fixtures/
 │   └── sample_detections.json
-└── results/                  # Test run output (gitignored)
+├── integration/                  reserved for future integration tests
+├── unit/                         reserved for additional unit tests
+└── results/                      generated output, mostly gitignored
 ```
 
-## Running Tests
-
-### Prerequisites
+## Run the portable C++ safety test
 
 ```bash
-pip install pytest pytest-json-report
+g++ -std=c++17 -Wall -Wextra -Werror \
+  -Ifirmware/main \
+  tests/cpp/safety_decision_test.cpp \
+  -o /tmp/carec_safety_decision_test
+/tmp/carec_safety_decision_test
 ```
 
-### Run All Tests
+This directly compiles `firmware/main/safety_decision.h` and verifies zone boundaries plus fail-safe behavior for unavailable or failed detection.
+
+## Run the Python tests
+
+Use an isolated environment:
 
 ```bash
-cd /path/to/CAREC-Project
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install pytest pytest-json-report
 pytest tests/obstacle_test.py -v
 ```
 
-### Run with JSON Report
+The Python suite covers legacy distance heuristics, zone boundaries, beep timing, fixtures, event format, and mirrored failure-state expectations. It does not replace the portable C++ test.
 
-```bash
-pytest tests/obstacle_test.py -v --json-report --json-report-file=tests/results/latest.json
-```
+## CI
 
-## Test Coverage
+[`.github/workflows/test.yml`](../.github/workflows/test.yml) runs both suites when firmware or test inputs change. Project-wide repository checks are defined in [`.github/workflows/project-quality.yml`](../.github/workflows/project-quality.yml).
 
-| Test File | What It Tests |
-|-----------|--------------|
-| `obstacle_test.py` | Zone classification logic, distance thresholds (DIST_RED=60, DIST_YELLOW=100), beep pattern mapping, 50-scenario obstacle matrix |
+## Adding tests
 
-## Key Threshold Values (Must Match Firmware)
+Every behavior change should include the lowest-level authoritative test possible:
 
-| Constant | Value | Defined In |
-|----------|-------|-----------|
-| `DIST_RED` | 60 cm | `firmware/config/zone_config.h` |
-| `DIST_YELLOW` | 100 cm | `firmware/config/zone_config.h` |
-| RED test point | 30 cm | mid-zone representative |
-| YELLOW test point | 80 cm | mid-zone representative |
-| GREEN test point | 120 cm | mid-zone representative |
+1. portable C++ test for runtime safety decisions;
+2. ROS package unit test for autonomy components;
+3. launch or integration test for interfaces;
+4. deterministic scenario for system behavior; and
+5. machine-readable metrics for milestone evidence.
 
-## Adding New Tests
+Future simulation tests must use fixed seeds where practical and report collisions, minimum clearance, stopping distance, intervention reason, latency, and final state.
 
-1. Add test functions to `obstacle_test.py` (or create a new file in `tests/`)
-2. Add sample detection data to `fixtures/sample_detections.json`
-3. Run `pytest tests/ -v` to verify all pass
-4. Commit both the test and the fixture data
+## Known gap
 
-## CI/CD
-
-Tests run automatically on every push via GitHub Actions:  
-`.github/workflows/test.yml`
+Most existing Python tests mirror portions of firmware behavior instead of executing embedded code. New safety logic should be extracted into portable C++ modules and tested directly.

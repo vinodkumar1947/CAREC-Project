@@ -1,112 +1,41 @@
-# CAREC Mobile Integration
+# CAREC User Interface Research
 
-> **Legacy concept.** This mobile plan predates the simulation-first reset and is not an active CAREC Sim 0.1 deliverable.
+> **No active mobile application is implemented.** This directory formerly described a SenseCraft caregiver-app concept. That plan is retained in Git history and is not a CAREC Sim 0.1 commitment.
 
-**App:** SenseCraft Mate (iOS / Android — free)  
-**Protocol:** Bluetooth Low Energy (BLE 5) GATT
+## Current direction
 
----
+The first user interface is simulator-facing and must support:
 
-## Overview
+- user intent without reducing user agency;
+- explicit emergency stop and reset state;
+- visible reasons for slowdown, stop, or rejected commands;
+- navigation destination selection;
+- system, sensor, and localization health;
+- replayable safety events; and
+- accessible interaction reviewed with wheelchair users and relevant professionals.
 
-CAREC sends real-time obstacle events to the **SenseCraft Mate** caregiver app over BLE. The caregiver's phone receives push notifications for each zone transition (GREEN → YELLOW, GREEN → RED, etc.).
+The interface must not imply that simulation results make the system safe for occupied-wheelchair use.
 
----
+## Not currently promised
 
-## App Download
+- SenseCraft Mate compatibility
+- caregiver push notifications
+- Home Assistant or Node-RED integration
+- cloud accounts or cloud-required operation
+- BLE-based location tracking
+- remote motor control
 
-| Platform | Link |
-|----------|------|
-| iOS | https://apps.apple.com/us/app/sensecraft/id1619944834 |
-| Android | https://play.google.com/store/apps/details?id=cc.seeed.sensecapmate |
+Any future caregiver or clinician view requires a separate privacy and consent design. Personal health information, identifiable participant data, credentials, and raw private recordings must not be committed to this repository.
 
----
+## Contributor path
 
-## Pairing Steps
+Accessibility and interface work should start from a scoped GitHub issue with:
 
-1. Power on the SenseCAP Watcher (hold button 3 seconds)
-2. Open SenseCraft Mate → tap **"Add Device"**
-3. Select **"SenseCAP Watcher W1-A"** from the scan list
-4. Follow the in-app pairing wizard
-5. Configure 2.4 GHz WiFi in the app (required for OTA)
-6. Verify "CAREC" appears in the device list with a green status dot
+- the intended user and decision;
+- an accessible interaction requirement;
+- mock or simulated data only;
+- objective acceptance criteria;
+- privacy impact; and
+- safety classification.
 
----
-
-## BLE Event Format
-
-Each obstacle event is a JSON string sent via BLE GATT notify:
-
-```json
-{"zone":"RED","dist_cm":42.3,"motion":"FORWARD","ts_ms":12345678}
-```
-
-| Field | Type | Values |
-|-------|------|--------|
-| `zone` | string | `"GREEN"`, `"YELLOW"`, `"RED"` |
-| `dist_cm` | float | distance to nearest obstacle (cm) |
-| `motion` | string | `"STATIONARY"`, `"FORWARD"`, `"BACKWARD"` |
-| `ts_ms` | uint32 | `millis()` timestamp since boot (ms) |
-
----
-
-## BLE GATT Service (Planned)
-
-> **Current status:** Stub — events are mirrored to Serial until UUIDs are confirmed with Seeed.
-
-| Role | UUID |
-|------|------|
-| Service (Nordic UART) | `6E400001-B5A3-F393-E0A9-E50E24DCCA9E` |
-| TX Characteristic (notify) | `6E400003-B5A3-F393-E0A9-E50E24DCCA9E` |
-
-**Action required:** Contact Seeed Studio to confirm whether SenseCraft Mate uses the Nordic UART UUIDs above or a custom CAREC-specific characteristic. See `firmware/main/ble_logger.h` for the stub implementation and `TODO` comments.
-
----
-
-## Implementing Real BLE GATT
-
-When UUIDs are confirmed, replace the stub in `firmware/main/ble_logger.h`:
-
-```cpp
-#include <BLEDevice.h>
-#include <BLEServer.h>
-#include <BLEUtils.h>
-#include <BLE2902.h>
-
-#define SERVICE_UUID        "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
-#define CHARACTERISTIC_UUID "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
-
-BLECharacteristic* pTxChar;
-
-inline void ble_logger_init() {
-    BLEDevice::init("CAREC-Watcher");
-    BLEServer* pServer = BLEDevice::createServer();
-    BLEService* pService = pServer->createService(SERVICE_UUID);
-    pTxChar = pService->createCharacteristic(
-        CHARACTERISTIC_UUID,
-        BLECharacteristic::PROPERTY_NOTIFY
-    );
-    pTxChar->addDescriptor(new BLE2902());
-    pService->start();
-    BLEDevice::startAdvertising();
-    _ble_ready = true;
-}
-
-static void _ble_notify(const char* json) {
-    if (!_ble_ready) return;
-    pTxChar->setValue((uint8_t*)json, strlen(json));
-    pTxChar->notify();
-}
-```
-
----
-
-## Home Assistant Integration (Phase 2 — Week 7-8)
-
-CAREC will forward BLE events to Home Assistant via Node-RED:
-
-```
-Watcher BLE → Node-RED MQTT bridge → Home Assistant → Dashboard alert
-```
-
-See `docs/specifications/system_spec.md` for full architecture.
+See the [project aim](../docs/vision/PROJECT_AIM.md), [team workflow](../docs/contributors/TEAM_WORKFLOW.md), and issues labeled [`accessibility`](https://github.com/vinodkumar1947/CAREC-Project/issues?q=is%3Aissue+is%3Aopen+label%3Aaccessibility).

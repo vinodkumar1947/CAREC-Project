@@ -57,9 +57,11 @@ L2 shared control is the first major product objective. Full unattended autonomy
 
 The repository contains an earlier SenseCAP Watcher obstacle-warning firmware prototype. It detects supported object classes, estimates approximate distance from bounding boxes, and produces visual/audio/BLE alerts. This code is useful research input, but it is not motor-control software and has unresolved validation work.
 
-The simulation-first autonomy workspace has not yet been implemented. The current program begins with repository governance, reproducible setup, a digital wheelchair, and an independent safety kernel.
+The simulation-first autonomy workspace is at its foundation stage: the development container, status schema, issue structure, and CI checks exist, but the ROS packages, digital wheelchair, and safety kernel are not yet implemented.
 
 See the evidence-based [project scorecard](docs/status/PROJECT_SCORECARD.md), [roadmap](ROADMAP.md), and [project log](PROJECT_LOG.md).
+
+Work is organized in the current [GitHub issue backlog](https://github.com/vinodkumar1947/CAREC-Project/issues) and five simulation-first milestones. Closed issues labeled `legacy` belong to the previous hardware-first plan.
 
 ## Software direction
 

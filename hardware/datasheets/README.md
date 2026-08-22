@@ -1,33 +1,27 @@
-# hardware/datasheets — Component Reference Links
+# Hardware Reference Index
 
-Store PDFs here for offline reference. Links below are the authoritative sources.
+This directory contains links for the owner-controlled legacy firmware prototype. Contributors to CAREC Sim do not need these components.
 
-## Primary Components
+## Legacy prototype references
 
-| Component | Document | Link |
-|-----------|----------|------|
-| SenseCAP Watcher W1-A | Wiki + Setup Guide | https://wiki.seeedstudio.com/sensecap_watcher/ |
-| SenseCAP Watcher W1-A | OSHW Schematics + Source | https://github.com/Seeed-Studio/OSHW-SenseCAP-Watcher |
-| ESP32-S3 | Datasheet | https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf |
-| ESP32-S3 | Technical Reference | https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf |
-| Himax HX6538 (WiseEye2) | Product Brief | https://www.himax.com.tw/products/wiseeye-ai-sensing/wiseeye2-ai-processor/ |
-| OV5647 Camera | Datasheet | https://datasheetspdf.com/pdf/1228086/OmniVision/OV5647/1 |
+| Component | Authoritative reference |
+|---|---|
+| SenseCAP Watcher W1-A | [Seeed product documentation](https://wiki.seeedstudio.com/watcher/) |
+| SenseCAP Watcher hardware | [Open-source schematics](https://github.com/Seeed-Studio/OSHW-SenseCAP-Watcher) |
+| ESP32-S3 | [Espressif datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf) |
+| ESP32-S3 | [Technical reference manual](https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf) |
+| Himax WiseEye2 | [Himax product information](https://www.himax.com.tw/products/wiseeye-ai-sensing/wiseeye2-ai-processor/) |
 
-## Phase 2 Grove Sensors
+Links may change and specifications must be verified before physical design decisions.
 
-| Component | Document | Link |
-|-----------|----------|------|
-| ADXL345 Accelerometer | Datasheet | https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf |
-| HC-SR04 Ultrasonic | Datasheet | https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf |
+## Adding future references
 
-## Mounting Hardware
+A new physical component requires:
 
-| Component | Notes |
-|-----------|-------|
-| Ball Joint (1/4" thread) | Standard camera ball joint — any brand |
-| Tube Clamp (1–1.5" stainless) | Standard pipe/tube clamp |
+- a simulator or validation requirement it satisfies;
+- license and redistribution review;
+- power, interface, latency, and failure-mode notes;
+- an architecture decision or owner-approved issue;
+- confirmation that contributors are not required to purchase it.
 
-## File Naming Convention
-
-When adding local PDFs, use: `<COMPONENT_NAME>_<VERSION>_datasheet.pdf`  
-Example: `ESP32-S3_v1.3_datasheet.pdf`
+Do not commit copyrighted vendor PDFs unless redistribution is permitted. Prefer authoritative links. If a redistributable local document is approved, use `<component>_<version>_datasheet.pdf`.
