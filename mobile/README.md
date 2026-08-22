@@ -1,5 +1,7 @@
 # CAREC Mobile Integration
 
+> **Legacy concept.** This mobile plan predates the simulation-first reset and is not an active CAREC Sim 0.1 deliverable.
+
 **App:** SenseCraft Mate (iOS / Android — free)  
 **Protocol:** Bluetooth Low Energy (BLE 5) GATT
 

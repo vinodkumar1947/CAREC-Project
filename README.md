@@ -81,13 +81,22 @@ NVIDIA Isaac Sim and CARLA may become optional high-fidelity backends. They will
 ```text
 firmware/       Existing obstacle-warning firmware prototype
 tests/          Existing host-side firmware behavior tests
+autonomy_ws/    ROS 2 autonomy workspace (foundation stage)
+evaluation/     Machine-readable progress and future scenario evidence
+scripts/        Contributor bootstrap and repository validation
 docs/           Vision, architecture, safety, status, and guides
 hardware/       Owner-managed prototype documentation
 research/       Research writing and references
 .github/        Contribution forms, ownership, and CI
 ```
 
-Planned additions include `autonomy_ws/`, `simulation/`, `scenarios/`, `evaluation/`, and an owner-controlled `hardware_bridge/`.
+Planned additions include simulation packages, scenario libraries, evaluation reports, and an owner-controlled `hardware_bridge/`.
+
+The initial contributor environment is available through [the development container](.devcontainer/devcontainer.json). After opening the repository in the container, run:
+
+```bash
+./scripts/bootstrap.sh --check
+```
 
 ## Contributing
 

@@ -1,0 +1,27 @@
+name: Project Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  repository:
+    name: Repository checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate project status
+        run: python3 scripts/validate_status.py
+
+      - name: Check contributor bootstrap
+        run: ./scripts/bootstrap.sh --check
+
+      - name: Check whitespace
+        run: git diff-tree --check --no-commit-id --root -r HEAD

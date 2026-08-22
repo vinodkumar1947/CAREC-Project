@@ -1,68 +1,31 @@
-# CAREC Project — Documentation Index
+# CAREC Documentation
 
-**CAREC** (Collision Avoidance with Real-time Edge Computing)  
-AI-powered obstacle detection for a 6-year-old's electric wheelchair. Built on **SenseCAP Watcher W1-A Clear Enclosure** — "The Physical AI Agent for Smarter Spaces" (ESP32-S3 + Himax WiseEye2 HX6538 NPU + 5MP OV5647 camera + 1.45" touch screen + 1W speaker).
+This index separates the active simulation-first program from the retained firmware-prototype record.
 
----
+## Current program
 
-## Hardware Status
+| Document | Purpose |
+|---|---|
+| [Project aim](vision/PROJECT_AIM.md) | Human outcome, engineering outcome, and boundaries |
+| [Roadmap](../ROADMAP.md) | Twelve-week CAREC Sim 0.1 program |
+| [Autonomy architecture](architecture/AUTONOMY_ARCHITECTURE.md) | Safety boundary and planned ROS 2 packages |
+| [Project scorecard](status/PROJECT_SCORECARD.md) | Evidence-backed program progress |
+| [First contribution](contributors/FIRST_CONTRIBUTION.md) | Safe onboarding exercise |
+| [Team workflow](contributors/TEAM_WORKFLOW.md) | Workstreams, review, access, and asynchronous coordination |
+| [Contribution policy](../CONTRIBUTING.md) | Git workflow, definition of done, safety levels, licensing |
 
-- **Device:** SenseCAP Watcher W1-A Clear Enclosure (SKU 113991315, $59.99) — ordered April 28, 2026
-- **Phase:** Hardware arriving → Development starts Week 1, May 2026
-- **See:** [HARDWARE_STATUS_UPDATE.md](specifications/HARDWARE_STATUS_UPDATE.md) for full timeline
+## Legacy firmware prototype
 
----
+Documents under `api/`, `guides/`, `safety/`, `specifications/`, and the root-level firmware architecture describe the earlier SenseCAP obstacle-warning prototype. They are retained as research evidence and do not define the current autonomy roadmap.
 
-## Core Documentation
+Important limitations:
 
-| Document | Description |
-|----------|-------------|
-| [Hardware Status Update](specifications/HARDWARE_STATUS_UPDATE.md) | Hardware decision, timeline, what was ordered |
-| [SenseCAP Watcher Selection](specifications/SENSECAP_WATCHER_HARDWARE_SELECTION.md) | Full specs, competitor analysis, rationale |
-| [System Specification](specifications/system_spec.md) | Full architecture, safety requirements, 90-day roadmap |
-| [Quick Reference](guides/quick_reference.md) | Project at a glance, action checklist, firmware starter for SenseCAP Watcher |
+- The firmware does not control wheelchair motion.
+- Its monocular distance estimates are not physically validated for deployment.
+- Old schedules, prices, production claims, and compatibility claims are historical.
+- No legacy document authorizes unsupervised or occupied-wheelchair use.
+- The root README, current roadmap, project aim, and autonomy architecture take precedence.
 
-## Business & Market
+## Research and stakeholder material
 
-| Document | Description |
-|----------|-------------|
-| [Competitive Analysis](business/competitive_analysis.md) | Braze Mobility vs CAREC, SWOT, market gap |
-
-## Learning Resources
-
-| Document | Description |
-|----------|-------------|
-| [DIY Projects & GitHub Links](resources/diy_projects_github.md) | 12 reference implementations, learning path |
-
-## Hardware
-
-| Document | Description |
-|----------|-------------|
-| [Hardware README](../hardware/README.md) | SenseCAP Watcher mounting guide, accessories |
-| [Bill of Materials](../hardware/BOM.md) | Full BOM with costs and suppliers |
-
-## Firmware & Programming
-
-| Document | Description |
-|----------|-------------|
-| **[Programming Guide](guides/programming_guide.md)** | **Compile, configure & flash — start here** |
-| [Firmware API Reference](api/firmware_api.md) | Public API for all 7 firmware modules |
-| [Firmware README](../firmware/README.md) | Architecture overview, safety logic |
-| [Firmware Setup Guide](../firmware/SETUP.md) | IDE installation + board package detail |
-| [Library Requirements](../firmware/main/idf_component.yml) | Required libraries + install steps |
-
-## Project Management
-
-| Document | Description |
-|----------|-------------|
-| [Development Tasks CSV](../docs/CAREC_tasks.csv) | 49 tasks (SenseCAP Watcher W1-A), ClickUp-ready import |
-| [Weekly Review Template](../weekly-reviews/TEMPLATE.md) | Fill weekly: metrics, wins, blockers |
-
----
-
-## Status
-
-- **Phase:** Hardware ordered → Arriving May 2026
-- **Target:** Working obstacle detection in 4 weeks after hardware arrives
-- **Budget:** ~$93–112 total (SenseCAP Watcher W1-A Clear $59.99 + mount + battery)
-- **Competitor:** Braze Mobility ($4,000) — CAREC is 15–30x cheaper with more features
+Research drafts and business media are retained for reference. Their claims must be revalidated before reuse in public presentations or publications.

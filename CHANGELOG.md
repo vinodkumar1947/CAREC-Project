@@ -6,6 +6,16 @@ Format: `[vX.Y.Z] — YYYY-MM-DD` with sections Added / Changed / Fixed / Remove
 
 ---
 
+## [Unreleased] — Simulation-first program
+
+### Changed
+
+- Reset project direction around no-hardware contribution, a digital wheelchair, independent safety supervision, shared control, and supervised indoor navigation.
+- Isolated physical adapters and releases under owner control.
+- Classified the entries below as historical firmware-prototype records rather than the current autonomy roadmap.
+
+> Versions 0.1.0–0.3.0 below describe the legacy SenseCAP warning-device prototype. Their production targets and schedules are not current.
+
 ## [0.3.0] — 2026-05-19 (Week 3 — Firmware Integration)
 
 ### Added

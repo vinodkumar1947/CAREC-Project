@@ -1,6 +1,8 @@
 # CAREC Hardware Status Update
 ## SenseCAP Watcher W1-A Final Selection
 
+> **Legacy hardware record.** This document predates the August 2026 simulation-first reset. Prices, schedules, production wording, and purchasing recommendations below are not current project commitments.
+
 **Date:** April 28, 2026 (specs verified May 3, 2026)  
 **Status:** ✅ HARDWARE SELECTED & ORDERED  
 **Primary Device:** SenseCAP Watcher W1-A Clear Enclosure — The Physical AI Agent for Smarter Spaces  

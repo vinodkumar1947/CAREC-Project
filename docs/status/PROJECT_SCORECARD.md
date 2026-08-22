@@ -29,11 +29,11 @@ The existing firmware prototype is tracked separately because it does not satisf
 | Autonomy build | Not configured |
 | Simulation regression | Not configured |
 | Safety scenarios | 0 defined in new framework |
-| Open safety blockers | Failure-state semantics; hardware boundary implementation |
+| Open safety blockers | Hardware boundary implementation; simulation safety kernel not built |
 | Latest release | No simulation-first release |
 
-## Dashboard automation plan
+## Dashboard foundation
 
-GitHub Actions will generate this scorecard and a machine-readable `status.json` from merged milestone evidence, tests, and scenario reports. GitHub Pages will present delivery, engineering health, autonomy safety metrics, and contribution activity. Individual contributors will not be ranked by commits or lines of code.
+The machine-readable source is [`evaluation/status.json`](../../evaluation/status.json), and CI validates its schema. Automatic metric collection and a GitHub Pages presentation remain planned work. Individual contributors will not be ranked by commits or lines of code.
 
 A milestone receives credit only after its acceptance evidence is merged. Percentages are never inferred from time spent or number of issues opened.

@@ -1,0 +1,22 @@
+{
+  "name": "CAREC ROS 2 Jazzy",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "carec",
+  "workspaceFolder": "/workspaces/CAREC-Project",
+  "containerEnv": {
+    "ROS_DISTRO": "jazzy"
+  },
+  "postCreateCommand": "./scripts/bootstrap.sh --check",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-iot.vscode-ros",
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "redhat.vscode-yaml"
+      ]
+    }
+  }
+}

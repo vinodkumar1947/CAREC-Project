@@ -31,6 +31,7 @@
 #include <WiFi.h>
 #include "sensecraft_detection.h"
 #include "distance_estimator.h"
+#include "safety_decision.h"
 #include "directional_beep_patterns.h"
 #include "motion_detector.h"
 #include "ble_logger.h"
@@ -184,14 +185,17 @@ static void carec_loop() {
     log_detections(&result);
     log_distances(&result);
 
-    // 2. Estimate nearest obstacle distance
-    float dist_cm = nearest_obstacle_cm(&result);
-
-    // 3. Classify zone
-    int zone;
-    if      (dist_cm < DIST_RED)    zone = ZONE_RED;
-    else if (dist_cm < DIST_YELLOW) zone = ZONE_YELLOW;
-    else                            zone = ZONE_GREEN;
+    // 2–3. Estimate distance and classify. A detector failure is different
+    // from a healthy frame containing no obstacles: failure enters the
+    // conservative RED state and blocks OTA.
+    float measured_dist_cm = nearest_obstacle_cm(&result);
+    SafetyDecision decision = decide_safety_zone(result.status, measured_dist_cm);
+    float dist_cm = decision.distance_cm;
+    int zone = decision.zone;
+    if (decision.detector_degraded) {
+        Serial.printf("[Safety] detector unavailable (status=%d) → RED fail-safe\n",
+                      static_cast<int>(result.status));
+    }
 
     Serial.printf("[Safety] %.1f cm → %s\n", dist_cm,
         zone == ZONE_RED    ? "RED (<60cm)"       :

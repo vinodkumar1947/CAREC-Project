@@ -1,6 +1,8 @@
 # CAREC — SMART WHEELCHAIR SAFETY SYSTEM: TECHNICAL SPECIFICATION
 ## AI-Powered Obstacle Detection for Electric Wheelchairs (Age 6+)
 
+> **Legacy specification.** This April 2026 hardware plan is retained for provenance. Its schedules, costs, universal-compatibility wording, completion marks, production claims, and deployment plans are not current. Current scope is defined by the root README, ROADMAP, and `docs/vision/PROJECT_AIM.md`.
+
 **Project Owner:** Vinod Kumar (IoT/Firmware Expert)  
 **Target User:** 6-year-old child with Numotion electric wheelchair  
 **Status:** Hardware Ordered → Development starts May 2026  

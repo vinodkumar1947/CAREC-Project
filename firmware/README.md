@@ -1,5 +1,7 @@
 # Firmware — CAREC Wheelchair Safety System
 
+> **Legacy obstacle-warning prototype.** This firmware does not control wheelchair motion and is not part of the default simulation contributor path. Flashing and physical validation are restricted to the project owner.
+
 **Hardware:** SenseCAP Watcher W1-A Clear Enclosure (ESP32-S3 + Himax WiseEye2 HX6538 NPU)
 **Toolchain:** ESP-IDF v5.3.5 (with `arduino-esp32` as a managed component for `Arduino.h` / `Wire.h` / `BLEDevice` ergonomics)
 **Language:** C++17

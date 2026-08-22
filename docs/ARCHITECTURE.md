@@ -1,5 +1,7 @@
 # CAREC — System Architecture
 
+> **Legacy firmware document.** This describes the May 2026 SenseCAP obstacle-warning prototype, contains known stale module descriptions, and does not define the current simulation-first autonomy architecture. See [`docs/architecture/AUTONOMY_ARCHITECTURE.md`](architecture/AUTONOMY_ARCHITECTURE.md). Do not use this document to justify motor integration or occupied-wheelchair operation.
+
 **Version:** 0.3.0  
 **Status:** Active development — Week 3  
 **Last updated:** May 19, 2026

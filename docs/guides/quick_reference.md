@@ -1,6 +1,8 @@
 # CAREC: QUICK REFERENCE & ACTION PLAN
 ## SenseCAP Watcher W1-A Clear Enclosure Edition
 
+> **Legacy firmware quick reference.** Dates, costs, milestones, and deployment language below belong to the earlier SenseCAP warning-device plan. Start from the repository root README for current work.
+
 > **Updated May 15, 2026** — Hardware is the **SenseCAP Watcher W1-A Clear Enclosure** ($59.99). Received May 4, 2026. Custom firmware (ESP-IDF v5.3.5) actively running: LED, speaker, SSCMA detection all validated. Main loop ready to flash-validate.
 > The old ESP32-C6 multi-sensor design has been deprecated.
 

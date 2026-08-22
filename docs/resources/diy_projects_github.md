@@ -1,6 +1,8 @@
 # DIY WHEELCHAIR SAFETY PROJECTS - GITHUB COLLECTION
 ## Open-Source References for CAREC Development
 
+> **Legacy research links.** These references are not reviewed hardware-integration instructions. Contributors must not connect community code to an occupied wheelchair or bypass the CAREC safety boundary.
+
 **Last Updated:** April 27, 2026  
 **Purpose:** Reference implementations you can learn from and adapt for CAREC
 

@@ -17,7 +17,8 @@ import pytest
 from tests.conftest import (
     DIST_RED, DIST_YELLOW,
     ZONE_GREEN, ZONE_YELLOW, ZONE_RED,
-    classify_zone, estimate_distance,
+    DETECTION_OK, DETECTION_NOT_READY, DETECTION_INFERENCE_FAILED,
+    classify_zone, classify_detection_result, estimate_distance,
 )
 
 # ── Extended distance estimator (label-aware, mirrors distance_estimator.h) ───
@@ -260,6 +261,13 @@ class TestFixtureDetections:
         tc = next(t for t in sample_detections if t["id"] == "TC-EMPTY-01")
         assert tc["detection"]["count"] == 0
         assert tc["expected_zone"] == "GREEN"
+
+    def test_healthy_empty_detection_is_green(self):
+        assert classify_detection_result(DETECTION_OK, DIST_MAX) == ZONE_GREEN
+
+    @pytest.mark.parametrize("status", [DETECTION_NOT_READY, DETECTION_INFERENCE_FAILED])
+    def test_detector_failure_is_red(self, status):
+        assert classify_detection_result(status, DIST_MAX) == ZONE_RED
 
     def test_boundary_red_is_yellow(self, sample_detections):
         tc = next(t for t in sample_detections if t["id"] == "TC-BOUNDARY-RED")

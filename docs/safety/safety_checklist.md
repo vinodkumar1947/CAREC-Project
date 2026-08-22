@@ -1,5 +1,7 @@
 # CAREC Safety Checklist
 
+> **Legacy warning-device checklist.** Passing this checklist does not authorize autonomous, unsupervised, or occupied-wheelchair operation. It is retained only for the earlier alert-device prototype.
+
 **Device:** SenseCAP Watcher W1-A Clear Enclosure  
 **User:** 6-year-old child in electric wheelchair  
 **Reviewer:** Caregiver + technical lead

@@ -25,6 +25,10 @@ ZONE_GREEN  = 0
 ZONE_YELLOW = 1
 ZONE_RED    = 2
 
+DETECTION_OK = 0
+DETECTION_NOT_READY = 1
+DETECTION_INFERENCE_FAILED = 2
+
 # ── Shared fixtures ───────────────────────────────────────────────────────────
 
 @pytest.fixture(scope="session")
@@ -50,6 +54,13 @@ def classify_zone(distance_cm):
         return ZONE_YELLOW
     else:
         return ZONE_GREEN
+
+
+def classify_detection_result(status, distance_cm):
+    """Mirror the firmware fail-safe boundary for detector health."""
+    if status != DETECTION_OK:
+        return ZONE_RED
+    return classify_zone(distance_cm)
 
 
 def estimate_distance(bbox_w_norm, real_width_cm=30.0, half_fov_deg=60.0):

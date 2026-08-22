@@ -1,6 +1,8 @@
 # CAREC vs COMPETITORS: Complete Market Analysis
 ## Smart Wheelchair Safety & Mobility Systems (2025-2026)
 
+> **Legacy market research.** Product features, prices, comparisons, and autonomy claims below require fresh verification before public or commercial use.
+
 **Analysis Date:** April 27, 2026  
 **Scope:** All commercial, academic, and DIY wheelchair safety systems  
 **Target Market:** Kids (age 6+) to adults with electric wheelchairs

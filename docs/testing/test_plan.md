@@ -1,10 +1,12 @@
 # CAREC Test Plan
 
+> **Legacy firmware test plan.** This does not authorize unsupervised use and is not the validation plan for the simulation-first autonomy stack. Physical testing remains owner-controlled. A new scenario-based safety plan will replace this document before CAREC Sim 0.1.
+
 **Version:** 0.3.0  
 **Target completion:** Week 4 (before any unsupervised use)  
 **Last updated:** May 19, 2026
 
-This document defines the validation plan for CAREC before the v1.0 release and before any unsupervised child use. Tests are grouped into three gates: **build gate** (automated CI), **bench gate** (controlled environment), and **deployment gate** (real wheelchair, supervised).
+Historically, this document defined validation gates for the warning-device prototype. It is retained only as test-design input. CAREC does not authorize unsupervised child use.
 
 ---
 
@@ -147,7 +149,7 @@ Test each combination of obstacle type and distance. Record Pass / Fail.
 
 ## Gate 3 — Deployment Validation
 
-Performed on the actual wheelchair with a supervising adult present. Do not proceed to unsupervised child use until Gate 3 passes.
+Historical procedure for the owner-controlled warning-device prototype. Passing this gate does not authorize unsupervised use.
 
 ### 3A — Physical Mounting
 

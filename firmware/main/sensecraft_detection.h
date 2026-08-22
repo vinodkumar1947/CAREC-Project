@@ -3,6 +3,7 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <Seeed_Arduino_SSCMA.h>
+#include "safety_decision.h"
 
 // SenseCraft object detection — SenseCAP Watcher W1-A
 //
@@ -89,6 +90,7 @@ struct DetectionResult {
     Detection items[MAX_DETECTIONS];
     int       count;
     uint32_t  inference_ms;
+    DetectionStatus status;
 };
 
 #define DETECTION_CONFIDENCE_THRESHOLD 0.55f
@@ -215,8 +217,11 @@ static DetectionResult sensecraft_detect() {
     DetectionResult result;
     result.count        = 0;
     result.inference_ms = 0;
+    result.status       = DETECTION_NOT_READY;
 
     if (!_ai_ready) return result;
+
+    result.status = DETECTION_OK;
 
     // Arduino SSCMA invoke(times, filter, show) sends AT+INVOKE=<t>,<!f>,<f>.
     // The official sscma_client SDK sends AT+INVOKE=<t>,<f>,<noshow> which for
@@ -240,7 +245,10 @@ static DetectionResult sensecraft_detect() {
         }
     }
 
-    if (inv_ret != 0 && raw_boxes == 0) return result;  // true failure
+    if (inv_ret != 0 && raw_boxes == 0) {
+        result.status = DETECTION_INFERENCE_FAILED;
+        return result;
+    }
 
     for (size_t i = 0; i < raw_boxes && result.count < MAX_DETECTIONS; i++) {
         const auto& b = _ai.boxes()[i];
