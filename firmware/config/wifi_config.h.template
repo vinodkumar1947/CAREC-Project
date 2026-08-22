@@ -1,0 +1,19 @@
+// wifi_config.h.template — CAREC WiFi credentials template
+//
+// USAGE:
+//   cp firmware/config/wifi_config.h.template firmware/config/wifi_config.h
+//   Edit wifi_config.h with your real credentials.
+//   wifi_config.h is gitignored — never commit real credentials.
+//
+// This template is committed so new developers know exactly what to create.
+
+#pragma once
+
+// 2.4 GHz WiFi only — SenseCAP Watcher W1-A does not support 5 GHz.
+#define WIFI_SSID      "YOUR_2_4GHz_SSID"
+#define WIFI_PASSWORD  "YOUR_WIFI_PASSWORD"
+
+// OTA server — set to your GitHub Releases base URL or local server.
+// Example: "http://192.168.1.100:8080/firmware/"
+#define OTA_SERVER_BASE_URL  "https://github.com/yourusername/CAREC-Project/releases/download/latest/"
+#define OTA_FIRMWARE_FILE    "CAREC_firmware.bin"

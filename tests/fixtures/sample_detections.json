@@ -1,0 +1,95 @@
+{
+  "_description": "Sample DetectionResult payloads for unit/integration tests. All bbox values are normalised [0.0–1.0]. Distance estimates assume CALIB_REF_WIDTH_CM=30 cm, CALIB_HALF_FOV_DEG=60°.",
+  "test_cases": [
+    {
+      "id": "TC-RED-01",
+      "description": "Single large obstacle at ~30 cm (RED zone)",
+      "expected_zone": "RED",
+      "expected_dist_range_cm": [20, 60],
+      "detection": {
+        "count": 1,
+        "label": ["chair"],
+        "confidence": [0.91],
+        "bbox_x": [0.35],
+        "bbox_y": [0.40],
+        "bbox_w": [0.38],
+        "bbox_h": [0.30]
+      }
+    },
+    {
+      "id": "TC-YELLOW-01",
+      "description": "Single obstacle at ~80 cm (YELLOW zone)",
+      "expected_zone": "YELLOW",
+      "expected_dist_range_cm": [60, 100],
+      "detection": {
+        "count": 1,
+        "label": ["person"],
+        "confidence": [0.87],
+        "bbox_x": [0.40],
+        "bbox_y": [0.35],
+        "bbox_w": [0.20],
+        "bbox_h": [0.25]
+      }
+    },
+    {
+      "id": "TC-GREEN-01",
+      "description": "Distant obstacle at ~120 cm (GREEN zone)",
+      "expected_zone": "GREEN",
+      "expected_dist_range_cm": [100, 200],
+      "detection": {
+        "count": 1,
+        "label": ["wall"],
+        "confidence": [0.82],
+        "bbox_x": [0.20],
+        "bbox_y": [0.30],
+        "bbox_w": [0.12],
+        "bbox_h": [0.40]
+      }
+    },
+    {
+      "id": "TC-EMPTY-01",
+      "description": "No detections — clear path",
+      "expected_zone": "GREEN",
+      "expected_dist_range_cm": [200, 200],
+      "detection": {
+        "count": 0,
+        "label": [],
+        "confidence": [],
+        "bbox_x": [],
+        "bbox_y": [],
+        "bbox_w": [],
+        "bbox_h": []
+      }
+    },
+    {
+      "id": "TC-MULTI-01",
+      "description": "Multiple detections — nearest should be RED",
+      "expected_zone": "RED",
+      "expected_dist_range_cm": [20, 60],
+      "detection": {
+        "count": 2,
+        "label": ["chair", "table"],
+        "confidence": [0.88, 0.75],
+        "bbox_x": [0.10, 0.55],
+        "bbox_y": [0.30, 0.35],
+        "bbox_w": [0.35, 0.10],
+        "bbox_h": [0.28, 0.20]
+      }
+    },
+    {
+      "id": "TC-BOUNDARY-RED",
+      "description": "Obstacle just past DIST_RED boundary (~60.1 cm) — should be YELLOW (not RED). bbox_w=0.240 with 50cm default ref gives ~60.1cm; 0.241 gives 59.9cm (wrong side).",
+      "expected_zone": "YELLOW",
+      "expected_dist_range_cm": [58, 65],
+      "detection": {
+        "count": 1,
+        "label": ["obstacle"],
+        "confidence": [0.85],
+        "bbox_x": [0.38],
+        "bbox_y": [0.38],
+        "bbox_w": [0.240],
+        "bbox_h": [0.25]
+      }
+    }
+  ]
+}

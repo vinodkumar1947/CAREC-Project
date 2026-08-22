@@ -1,0 +1,10 @@
+## IDF Component Manager Manifest
+dependencies:
+  espressif/arduino-esp32:
+    version: ">=3.1.0"
+  espressif/esp_lcd_spd2010:
+    version: "^2.0.0"
+  espressif/led_strip:
+    version: "^3.0.0"
+  idf:
+    version: ">=5.3.0"

@@ -1,0 +1,46 @@
+name: Engineering task
+description: A scoped implementation, test, simulation, or documentation task
+title: "[TASK] "
+labels: []
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: Describe the observable result, not just the activity.
+    validations:
+      required: true
+  - type: dropdown
+    id: hardware
+    attributes:
+      label: Hardware requirement
+      options:
+        - None
+        - Owner-only prototype
+    validations:
+      required: true
+  - type: dropdown
+    id: safety
+    attributes:
+      label: Safety classification
+      options:
+        - S0 - documentation only
+        - S1 - tooling or simulation asset
+        - S2 - perception, localization, or planning
+        - S3 - safety, velocity, release, or physical adapter
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Provide an objective checklist and exact test command where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Files and interfaces in scope
+      description: Identify package ownership and anything that must not change.
+    validations:
+      required: true

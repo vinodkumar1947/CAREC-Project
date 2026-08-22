@@ -1,0 +1,413 @@
+Name,Description,Priority,Status,Due Date,Assignee,Custom field (Timeline),Custom field (Guide),Custom field (Category),Checklist Items
+CAREC: Phase 1 Setup - Week 1,"Receive SenseCAP Watcher W1-A Clear Enclosure, set up SenseCraft Mate app, pair via Bluetooth, configure WiFi, validate all built-in I/O","Urgent",To Do,2026-05-04,Vinod,Week 1,90-day Plan,Setup,"Receive and unbox SenseCAP Watcher W1-A Clear Enclosure ($59.99)
+Download SenseCraft Mate app (iOS/Android — free)
+Pair Watcher via Bluetooth in SenseCraft Mate
+Configure WiFi (2.4GHz home network only)
+Trigger OTA firmware update from app
+Test built-in camera (120° FOV, OV5647, fixed focus 3m)
+Test built-in 1W speaker output
+Test 1.45" touch screen display
+Clone Seeed OSHW-SenseCAP-Watcher repo for firmware reference"
+Receive & Unbox SenseCAP Watcher W1-A Clear Enclosure,"Unbox device, verify all components, perform initial power-on test, document firmware version","High",To Do,2026-05-05,Vinod,Week 1,Quick Reference,Hardware,"Verify package contents (Watcher W1-A + USB-C cable)
+First power-on: hold power button 3 seconds
+Verify 1.45" touch screen lights up
+Verify 1W speaker plays startup sound
+Inspect OV5647 camera lens (no dust/scratches on clear enclosure)
+Record firmware version shown on display or in SenseCraft Mate
+Note SKU 113991315 on box for warranty reference"
+Pair Watcher via SenseCraft Mate App (Bluetooth + WiFi),"Download SenseCraft Mate, pair device via Bluetooth, configure 2.4GHz WiFi, verify app connection","High",To Do,2026-05-05,Vinod,Week 1,Setup Guide,Setup,"Download SenseCraft Mate (iOS or Android)
+Enable Bluetooth on phone
+Open app → Add Device → SenseCAP Watcher
+Follow pairing wizard on touch screen
+Enter WiFi SSID + password (2.4GHz only — 5GHz not supported)
+Verify device shows online in app
+Check WiFi RSSI signal in app
+Confirm OTA firmware check runs"
+Flash Latest SenseCraft Firmware via OTA,"Trigger OTA update from SenseCraft Mate app, verify successful update, record new firmware version","High",To Do,2026-05-06,Vinod,Week 1,Setup Guide,Firmware,"Open SenseCraft Mate → Device Settings → Firmware
+Check current firmware version
+Tap 'Check for Updates'
+Download and install latest SenseCraft firmware
+Verify device reboots cleanly after update
+Record new firmware version in docs/HARDWARE_STATUS_UPDATE.md
+Confirm Himax HX6538 NPU AI firmware also updated"
+Clone Seeed OSHW-SenseCAP-Watcher GitHub Repo,"Clone official Seeed open-source hardware/firmware repo for reference and CAREC custom firmware development","High",To Do,2026-05-06,Vinod,Week 1,Firmware,Firmware,"git clone https://github.com/Seeed-Studio/OSHW-SenseCAP-Watcher.git
+Review repo directory structure
+Locate firmware source files for ESP32-S3
+Identify SenseCraft detection loop entry points
+Review display API for 1.45 inch touch screen
+Note customizable hooks for CAREC beep + alert logic
+Bookmark wiki: https://wiki.seeedstudio.com/sensecap_watcher/"
+Set Up ESP-IDF / Arduino Development Environment,"Install Arduino IDE with Seeed ESP32-S3 board support, verify CAREC_obstacle_detection.ino compiles and uploads","High",To Do,2026-04-29,Vinod,Week 1,Setup Guide,Firmware,"Option A (recommended): Install Arduino IDE v2.x
+Add Seeed board URL: https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
+Board Manager: search 'Seeed XIAO' → Install
+Select Board: XIAO ESP32S3
+Option B: ESP-IDF v5.x → ./install.sh esp32s3
+Open firmware/src/CAREC_obstacle_detection.ino
+Verify compilation succeeds (no errors)
+Test USB-C flash upload to Watcher
+Verify Serial Monitor at 115200 baud"
+Validate Built-in Camera + SenseCraft Object Detection,"Test SenseCraft built-in detection, verify 120° FOV covers wheelchair path, confirm OV5647 + Himax HX6538 NPU output","High",To Do,2026-05-07,Vinod,Week 1,System Spec,Hardware,"Open SenseCraft Mate → Live Camera View
+Verify 120° wide-angle FOV visible on 1.45 inch display
+Enable SenseCraft built-in object detection model
+Point camera at furniture, person, wall
+Verify detection labels appear in app and on display
+Test at 30cm (RED zone), 80cm (YELLOW zone), 120cm (GREEN zone)
+Confirm inference running on Himax HX6538 NPU (<150ms)
+Document model name and version used"
+Create GitHub Repository for CAREC,"Verify repo exists, all docs committed, push initial commit, check GitHub Actions CI","High",To Do,2026-05-01,Vinod,Week 1,GitHub Setup,Admin,"Verify CAREC-Project repo is on GitHub
+Check all docs/ are committed
+Check firmware/src/ is committed
+Check hardware/BOM.md is up to date ($59.99 Watcher)
+Verify .gitignore excludes secrets and build artifacts
+Verify README badges show correct hardware
+Push any pending commits"
+Setup ClickUp Workspace,"Create CAREC project, import updated tasks CSV, set up Phase 1/2/3/4 views, configure notifications","High",To Do,2026-04-28,Vinod,Week 1,Admin,Admin,"Create ClickUp workspace
+Create CAREC project
+Create Phase 1/2/3/4 task lists
+Import tasks/CAREC_tasks.csv
+Configure custom fields (Timeline, Guide, Category)
+Set up Kanban view (To Do / In Progress / Done)
+Configure due date notifications"
+CAREC: Phase 1 Hardware Validation - Week 2,"Mount SenseCAP Watcher on wheelchair, validate camera angle and audio, test all built-in I/O under real conditions","High",In Progress,2026-05-11,Vinod,Week 2,90-day Plan,Hardware,"Assemble ball joint + tube clamp mount
+Mount Watcher to Numotion armrest (5 minutes)
+Adjust camera angle: forward-facing ~45° downward tilt
+Test 120° FOV covers obstacle zone ahead of wheels
+Test 1W speaker audible over wheelchair motor at 2m
+Test 1.45 inch display visible in room lighting
+Connect external 10000mAh LiPo via USB-C
+Validate full runtime at 150–200mA draw"
+Design & Finalize Wheelchair Mounting,"Confirm ball joint + tube clamp non-invasive mounting, test vibration resistance, document final configuration","High",To Do,2026-04-30,Vinod,Week 1,System Spec,Design,"Measure Numotion wheelchair armrest diameter (target 1–1.5 inch)
+Confirm ball joint 1/4 inch thread fits Watcher mount point
+Open clamp around armrest and tighten (no drilling required)
+Adjust to forward-facing ~45° downward tilt
+Vibration test: shake armrest — Watcher must not wobble
+Verify camera unobstructed by clear enclosure
+Verify 1.45 inch display visible to caregiver
+Take photos of final mounting for documentation"
+Mount SenseCAP Watcher to Wheelchair Armrest,"Assemble ball joint + tube clamp, mount Watcher on Numotion armrest, test stability and cable management","High",To Do,2026-05-08,Vinod,Week 2,Quick Reference,Hardware,"Loosen tube clamp bolts
+Wrap clamp around armrest (1–1.5 inch diameter)
+Tighten bolts: finger-tight + 1/4 turn
+Screw ball joint to Watcher (1/4 inch standard mount point)
+Angle camera: forward and ~45° down to cover obstacle zone
+Connect USB-C cable from 10000mAh LiPo battery pack
+Secure cable along armrest with velcro cable ties
+Confirm install time under 5 minutes
+Confirm removal time under 2 minutes"
+Configure SenseCraft Detection for Wheelchair Obstacles,"Configure SenseCraft model settings to reliably detect furniture, walls, and people as CAREC obstacles","High",To Do,2026-05-09,Vinod,Week 2,Firmware,Firmware,"Open SenseCraft Mate → AI Detection settings
+Enable object detection mode
+Test detection: chair, wall, person, door frame, box
+Verify detection labels appear on 1.45 inch display and in app
+Tune confidence threshold (target >0.7)
+Test at all three CAREC zones: 30cm (RED) / 80cm (YELLOW) / 120cm (GREEN)
+Confirm SenseCraft JSON detection output parseable by CAREC firmware
+Document model name and version in SENSECAP_WATCHER_HARDWARE_SELECTION.md"
+CAREC: Phase 1 Safety Logic - Weeks 3-4,"Implement distance thresholds using SenseCraft detections, 3-tier beep patterns, display alerts, BLE to caregiver app","High",To Do,2026-05-18,Vinod,Week 3-4,90-day Plan,Firmware,"Implement distance_estimator.h (bounding-box area heuristic)
+Implement thresholds: DIST_RED=60cm / DIST_YELLOW=100cm in CAREC_obstacle_detection.ino
+Implement directional_beep_patterns.h (3 patterns via 1W speaker)
+Implement display_alert() for 1.45 inch touch screen (color-coded)
+Wire beep_trigger() and beep_update() in main 100ms loop
+BLE alert JSON to SenseCraft Mate on danger events
+Run tests/obstacle_test.py — all assertions pass
+Field test with obstacles at 30cm (RED), 80cm (YELLOW), 120cm (GREEN)"
+Implement Distance Thresholds,"Define DIST_RED=60cm / DIST_YELLOW=100cm zone boundaries using SenseCraft bounding-box size as distance proxy in distance_estimator.h","High",To Do,2026-05-10,Vinod,Week 3,Firmware,Firmware,"Define DIST_RED = 60 in CAREC_obstacle_detection.ino
+Define DIST_YELLOW = 100
+Verify 3-tier zones: RED (<60cm), YELLOW (60-100cm), GREEN (100+cm)
+Implement nearest_obstacle_cm() in distance_estimator.h
+Use bounding box area as distance proxy (larger box = closer object)
+Calibrate scaling constant against measured distances
+Test threshold logic at actual measured distances (ruler)
+Log distance + alert type to Serial at 115200 baud"
+Implement Directional Beep Patterns,"Map danger level to beep pattern via built-in 1W speaker: caution 1/sec, warning 2/sec, critical rapid continuous","High",To Do,2026-05-13,Vinod,Week 3,Firmware,Firmware,"Implement BEEP_CAUTION: 1 beep/sec in directional_beep_patterns.h
+Implement BEEP_WARNING: 2 beeps/sec
+Implement BEEP_CRITICAL: rapid continuous
+Implement BEEP_NONE: silent
+Wire beep_trigger() and non-blocking beep_update() in main loop
+Test volume: 1W speaker audible at 2m with wheelchair motor running
+Verify OTA blocked during CRITICAL/WARNING (safety-critical)
+Verify OTA unblocked during CAUTION/NONE"
+Implement Touch Screen Visual Alerts (1.45 inch Display),"Use Watcher built-in 1.45 inch 412x412 display for color-coded visual feedback alongside audio beeps","Medium",To Do,2026-05-14,Vinod,Week 3,Firmware,Firmware,"Review SenseCraft display API in Seeed GitHub repo
+Implement display_alert(level) function
+GREEN (100+cm): green solid-on indicator
+YELLOW (60-100cm): yellow slow-blink warning
+RED (<60cm): red fast-blink critical alert
+Test display visibility in bright room and dim room
+Test display + speaker simultaneously (both active)"
+WiFi Connectivity Setup,"Verify IEEE 802.11 b/g/n 2.4GHz WiFi reliable in all wheelchair operating areas, confirm OTA works","High",To Do,2026-05-14,Vinod,Week 3,Firmware,Firmware,"Verify WiFi connects reliably in all home rooms
+Measure WiFi RSSI at max wheelchair range from router
+Implement reconnection logic (WiFi.setAutoReconnect)
+Test OTA trigger on WiFi reconnect event
+Confirm OTA check blocked during active danger alerts
+Log WiFi connection/disconnect events to Serial"
+BLE GATT Server Implementation,"Implement BLE 5 alerts to SenseCraft Mate caregiver app: obstacle events with distance and danger level","High",To Do,2026-05-15,Vinod,Week 3,Firmware,Firmware,"Verify BLE 5 range at 30m from Watcher to caregiver phone
+Define BLE notification JSON: {level, distance_cm, timestamp}
+Implement BLE characteristic for obstacle alerts
+Test alert delivery to SenseCraft Mate app
+Verify 100% alert receipt in 50 triggered scenarios
+Log BLE connect/disconnect events to Serial"
+CAREC: Phase 1 Testing & Assembly - Week 4,"50-obstacle field test, calibrate thresholds, 8-hour battery test, final safety check before child use","High",To Do,2026-05-25,Vinod,Week 4,90-day Plan,Testing,"Run 50-obstacle test scenario matrix
+Achieve >85% detection accuracy
+Confirm <5% false positive rate
+Confirm <200ms latency (camera → beep)
+8-hour continuous battery test
+Final safety validation checklist
+Caregiver sign-off"
+Real-World Obstacle Testing,"50+ obstacle scenario test: furniture, walls, people — verify accuracy, false positive rate, latency","High",To Do,2026-05-18,Vinod,Week 4,Testing,Testing,"Place obstacles at 30cm (RED zone), 80cm (YELLOW zone), 120cm (GREEN zone)
+Test: wall approach, chair, person, door frame, box
+Measure latency: obstacle placed → first beep (target <200ms)
+Document false positives during 30-min empty-room session (target <5%)
+Measure detection accuracy over 50 scenarios (target >85%)
+Record SenseCraft confidence scores for each detection
+Adjust distance_estimator.h constants if accuracy below target"
+Calibrate Distance Thresholds,"Fine-tune DIST_RED=60cm / DIST_YELLOW=100cm bounding-box scaling constants based on real SenseCraft measurements","High",To Do,2026-05-19,Vinod,Week 4,Testing,Testing,"Measure bounding box pixel area at exactly 30cm (RED), 80cm (YELLOW), 120cm (GREEN)
+Create distance-to-bbox-area lookup/calibration table
+Update distance_estimator.h calibration constants
+Retest all three threshold distances after calibration
+Test with different obstacle sizes (small chair vs large wall)
+Test in varying lighting (bright, dim, night light)
+Update tests/obstacle_test.py expected values to match calibrated constants"
+Wheelchair Mounting & Securing Final Check,"Final mounting: clamp torque, camera angle locked, cable managed, wires inaccessible to child","High",To Do,2026-05-21,Vinod,Week 4,Hardware,Hardware,"Final clamp tightness check (clamp stays under vibration)
+Camera angle locked: forward ~45° down
+USB-C cable routed along armrest with velcro cable ties
+10000mAh battery pack secured in saddlebag or armrest pocket
+Confirm no loose wires accessible to child
+Confirm clear enclosure unobstructed (no tape over camera)
+Take final installation photos for documentation
+Confirm removable in under 2 minutes"
+Battery Life Testing (8+ Hours),"Continuous operation test: SenseCAP Watcher + CAREC firmware on 10000mAh LiPo for 8+ hours","High",To Do,2026-05-22,Vinod,Week 4,Testing,Testing,"Full charge 10000mAh LiPo battery
+Connect to Watcher via USB-C
+Start CAREC firmware (camera + NPU + WiFi + BLE active)
+Log timestamp at test start
+Check battery indicator in SenseCraft Mate every 30 minutes
+Target: >8 hours before low-battery alert (50+ hours theoretical)
+Verify onboard 400mAh Li-ion provides graceful shutdown
+Test USB-C recharge cycle works"
+Final Safety Validation Checklist,"Before first child use: speaker audible, no loose wires, clear enclosure unblocked, caregiver app alerts working","High",To Do,2026-05-23,Vinod,Week 4,Testing,Testing,"Speaker volume test: 1W beep audible at 2m with motor running
+Visual inspection: no loose wires, no sharp edges on mount
+Clamp stress test: pull and shake — Watcher must not shift
+Clear enclosure check: camera and display fully unobstructed
+Battery secured: cannot be removed by child without tool
+Caregiver app: 100% alert receipt in 10 test scenarios
+OTA update: deploy test firmware and verify successful install
+Display visual alerts: all 4 levels visible and correct color
+Document all checks with pass/fail
+Get caregiver sign-off"
+Phase 1 MVP Complete,"Working CAREC: SenseCraft NPU detection + 3-tier beeps + touch screen alerts + BLE caregiver alerts + 8+ hour battery","High",To Do,2026-05-25,Vinod,Week 4,90-day Plan,Milestone,"All Week 1-4 tasks complete
+SenseCraft detection running on Himax HX6538 NPU
+Distance thresholds calibrated (DIST_RED=60cm / DIST_YELLOW=100cm)
+3-tier beep patterns audible over wheelchair motor
+1.45 inch display color alerts active
+BLE alerts reaching SenseCraft Mate caregiver app
+8+ hour battery runtime confirmed (10000mAh LiPo)
+Mounted on Numotion wheelchair (non-invasive)
+Caregiver trained on app and beep patterns
+Child understands 3 beep patterns
+Ready for supervised daily use"
+CAREC: Phase 2 LLM + OTA + App - Weeks 5-8,"Integrate local LLM via Ollama, custom OTA pipeline, caregiver app, Home Assistant + Node-RED integration","High",To Do,2026-06-22,Vinod,Weeks 5-8,90-day Plan,Firmware,"Implement local_llm_integration.cpp (Ollama + LLaMA-2)
+Test LLM scene description output via 1W speaker
+Build custom OTA pipeline (esp_https_ota + GitHub Actions)
+Complete caregiver BLE notification app
+Explore Home Assistant + Node-RED integration
+Indoor BLE location tracking prototype"
+Implement Local LLM Scene Description (Ollama),"Integrate local_llm_integration.cpp: send camera frame to local Ollama (LLaMA-2), output obstacle description via speaker","High",To Do,2026-05-26,Vinod,Week 5,Firmware,Firmware,"Set up Ollama + LLaMA-2 on local machine (on-premise, no cloud)
+Implement local_llm_integration.cpp (HTTP POST to Ollama API)
+Send camera frame JPEG to Ollama endpoint
+Parse LLM response (plain-text obstacle description)
+Output description via Watcher 1W speaker (TTS or pre-recorded tokens)
+Test ChatGPT API as cloud fallback (dev only, ~$0.01-0.10/image)
+Measure LLM response latency (target <2s)
+Verify on-premise: no data sent to public cloud in production mode"
+Implement Power Optimization / Sleep Mode,"Reduce power when wheelchair stationary: lower NPU rate, dim display, WiFi duty-cycle — extend runtime","High",To Do,2026-06-02,Vinod,Week 5-6,Firmware,Firmware,"Detect stationary state (no SenseCraft detections for 2 minutes)
+Reduce NPU frame rate from 10fps to 1fps in idle mode
+Dim 1.45 inch display to low brightness when idle
+Implement WiFi duty cycling (connect every 5 min for OTA check)
+Keep BLE active for caregiver app connectivity
+Log sleep/wake events with timestamp
+Measure active vs idle current draw at USB-C
+Target: extend effective runtime beyond 50 hours"
+Optimize Power Consumption,"Profile SenseCAP Watcher current draw in CAREC mode, identify savings, document power budget","High",To Do,2026-06-03,Vinod,Week 6,Firmware,Firmware,"Measure USB-C current: camera + NPU + WiFi + BLE all active
+Log draw every 30 sec over 2-hour test session
+Identify highest consumers (Himax NPU vs ESP32-S3 WiFi)
+Implement WiFi duty cycling and re-measure
+Reduce NPU polling when no obstacles detected
+Document final power budget in docs/specifications/system_spec.md"
+Complete Caregiver BLE App (Basic),"Extend SenseCraft Mate BLE data: real-time obstacle distance, danger level, battery %, system status","High",To Do,2026-06-08,Vinod,Week 6-7,Firmware,Firmware,"Define BLE notification JSON: {level, distance_cm, battery_pct, timestamp}
+Implement obstacle alert notification with distance and danger level
+Send battery percentage from Watcher to app (from 10000mAh pack gauge)
+Show system status (active/idle/error) in SenseCraft Mate
+Test on iOS and Android
+Test at 30m BLE range
+Get caregiver feedback on alert clarity and UX"
+Implement BLE Trilateration for Indoor Location,"Use BLE RSSI from fixed beacons to estimate wheelchair position, update caregiver app every 5s, target ±5m","High",To Do,2026-06-10,Vinod,Week 7,Firmware,Firmware,"Place 3-4 BLE beacons (cheap ESP32 dev boards) around home
+Measure BLE RSSI at known positions (1m, 3m, 5m, 10m)
+Create RSSI-to-distance lookup table
+Implement trilateration algorithm on ESP32-S3
+Send position updates to caregiver app every 5 seconds
+Test location accuracy indoors (target ±5m)
+Map home coverage — identify dead zones"
+WiFi OTA Custom Update Pipeline,"Implement esp_https_ota for CAREC firmware: ECDSA-signed binaries, rollback on failure, GitHub Actions trigger","High",To Do,2026-06-12,Vinod,Week 7,Firmware,Firmware,"Create dual OTA partition in ESP-IDF partition table
+Implement esp_https_ota HTTPS client
+Sign firmware binaries with ECDSA P-256
+Set up GitHub Actions workflow: build → sign → upload to server
+Test successful OTA end-to-end
+Test interrupted OTA (mid-download) → confirm rollback to previous
+Verify SenseCraft built-in OTA still usable as backup channel"
+Explore Home Assistant + Node-RED Integration,"Test SenseCAP Watcher native Home Assistant and Node-RED integration for caregiver dashboard and smart home alerts","Medium",To Do,2026-06-14,Vinod,Week 7-8,Firmware,Firmware,"Enable Home Assistant integration in SenseCraft Mate app
+Connect Watcher to local Home Assistant instance
+Create Home Assistant automation: obstacle detected → push notification to caregiver phone
+Build Node-RED flow: CAREC alert → mobile notification
+Create basic caregiver dashboard in Home Assistant (obstacle log, battery level, Watcher status)
+Document HA + Node-RED setup for open-source CAREC repo"
+Test SenseCraft Detection Accuracy,"Run 100+ detection tests, measure precision and recall, identify failure cases, optimize confidence threshold","High",To Do,2026-06-14,Vinod,Week 7-8,Testing,Testing,"Create 100+ obstacle scenario test matrix (varied objects, distances, lighting)
+Run SenseCraft detection on each scenario
+Record ground truth vs detected label + confidence
+Calculate precision (target >85%)
+Calculate recall (target >85%)
+Measure false positive rate (target <5%)
+Document failure cases: low light, small objects, reflective surfaces
+Tune SenseCraft confidence threshold based on results"
+Phase 2 Complete,"Full CAREC system: NPU detection + LLM description + display alerts + OTA + caregiver app + Home Assistant","High",To Do,2026-06-22,Vinod,Week 8,90-day Plan,Milestone,"All Week 5-8 tasks complete
+Ollama LLM on-premise scene description working
+1.45 inch display color alerts active
+Custom esp_https_ota pipeline operational
+Caregiver BLE app fully functional
+Home Assistant + Node-RED integration tested
+Ready for Phase 3 hardening"
+CAREC: Phase 3 Hardening - Weeks 9-12,"Safety validation, 72-hour burn-in, failure mode analysis, documentation, caregiver training, production readiness","High",To Do,2026-07-20,Vinod,Weeks 9-12,90-day Plan,Testing,"72-hour burn-in test
+Failure mode analysis (camera, WiFi, BLE, battery)
+Safety protocol validation (all scenarios)
+100-cycle power cycle stress test
+Firmware rollback testing
+Extreme environment testing
+Documentation complete
+Caregiver training session"
+72-Hour Reliability Burn-In Test,"Run SenseCAP Watcher continuously for 3 days: monitor for crashes, memory leaks, NPU hangs, thermal issues","High",To Do,2026-06-24,Vinod,Week 9,Testing,Testing,"Full charge 10000mAh LiPo battery
+Start CAREC firmware continuous operation
+Log all events with timestamp via Serial + SenseCraft Mate
+Monitor ESP32-S3 free heap every hour (watch for memory leak)
+Check Watcher surface temperature every hour (target <45°C)
+Restart at 24hr, 48hr, 72hr marks — log boot time
+Document any crashes, NPU hangs, or detection failures
+Calculate MTBF from test results"
+Failure Mode Analysis,"Test behavior when each subsystem fails: SenseCraft error, camera covered, WiFi down, BLE disconnect, low battery","High",To Do,2026-06-25,Vinod,Week 9,Testing,Testing,"Simulate SenseCraft detection model error → verify safe fallback (beep last known pattern)
+Cover OV5647 camera lens → log error, continue operating
+Disconnect WiFi → confirm OTA pauses, detection continues unaffected
+Disconnect BLE → confirm standalone detection still works
+Drain battery to 5% → confirm low-battery alert to caregiver app
+Simulate WiFi reconnect → confirm OTA resumes
+Document system behavior for each failure mode
+Verify no scenario causes crash or silent failure"
+Safety Protocol Validation,"Test all CAREC safety scenarios: slow approach, fast approach, multiple obstacles, low light, false positive measurement","High",To Do,2026-06-26,Vinod,Week 9,Testing,Testing,"Test slow-approach obstacle (2 cm/sec) → must detect before 60cm (DIST_RED boundary)
+Test fast approach (<500ms encounter) → must detect before 60cm (DIST_RED boundary)
+Test multiple simultaneous obstacles → nearest one takes priority
+Test detection in low light (night-light only room, target >70% accuracy)
+Measure false positive rate: 30-min empty-room session (target <5%)
+Measure false negative rate: 50 obstacle approaches (target <2%)
+Document all test results
+Get caregiver and therapist sign-off"
+Power Cycling Stress Test (100 Cycles),"Power on/off SenseCAP Watcher 100 times, verify clean boot, no filesystem corruption, no hung states","High",To Do,2026-06-27,Vinod,Week 9,Testing,Testing,"Script 100 power cycles (timed USB relay or manual with stopwatch)
+Log Serial output each boot — watch for error messages
+Verify SenseCraft model still loaded after each cycle
+Verify CAREC config (WiFi creds, thresholds) preserved
+Confirm no hung states at boot
+Document any boot failures — investigate root cause"
+Firmware Rollback Testing,"Test custom OTA failure recovery: interrupted update reverts to previous stable CAREC firmware, no data loss","High",To Do,2026-06-28,Vinod,Week 9-10,Testing,Testing,"Flash a known-good stable CAREC firmware version
+Trigger OTA update then simulate WiFi disconnect mid-download
+Confirm Watcher rolls back to previous version on next boot
+Verify detection + beep logic fully functional after rollback
+Test SenseCraft built-in OTA as fallback channel
+Document rollback procedure in firmware/SETUP.md"
+Extreme Environment Testing,"Test in temperature extremes, wet splash, low light, bright sunlight — document all limits","High",To Do,2026-06-30,Vinod,Week 10,Testing,Testing,"Test at ~5 degrees C (fridge): power on, verify detection works
+Test at ~40 degrees C (warm room): check for NPU thermal throttling
+Wet conditions: splash water on clear enclosure — no ingress to electronics
+Camera detection in low-light (night light only): target >70% accuracy
+Display readability in bright sunlight (1.45 inch screen)
+WiFi performance: microwave running (2.4GHz interference) test
+Document all results and operating limits in user manual"
+Complete Firmware Documentation,"Code comments, updated system_spec.md, architecture diagram, safety-critical sections annotated, SETUP.md final","High",To Do,2026-07-02,Vinod,Week 10,Documentation,Documentation,"Add inline comments to all *.ino, *.h, *.cpp files
+Update docs/specifications/system_spec.md with final calibrated values
+Document distance_estimator.h calibration constants and methodology
+Annotate safety-critical code paths (beep logic, OTA lock during danger)
+Update firmware/SETUP.md with any setup changes found during testing
+Create firmware architecture ASCII diagram"
+Complete Hardware Documentation,"Verify BOM accuracy, mounting guide with photos, SenseCAP Watcher specs confirmed, maintenance procedures","High",To Do,2026-07-03,Vinod,Week 10,Documentation,Documentation,"Verify hardware/BOM.md ($59.99 Watcher + accessories = ~$93-112 total)
+Confirm hardware/README.md has final mounting photos
+Document ball joint and tube clamp part numbers (Amazon links)
+Write monthly maintenance checklist (clean lens, check clamp, charge battery)
+Note Watcher warranty: Seeed Studio support at seeedstudio.com/support
+Final system cost confirmed: ~$93-112 (excl. optional SD card)"
+Create Caregiver User Manual,"Plain-language guide: beep patterns, touch screen colors, charging, emergency procedures, app guide","High",To Do,2026-07-04,Vinod,Week 10,Documentation,Documentation,"Explain 3 beep patterns: 1 beep/sec caution, 2 beeps/sec warning, rapid critical
+Explain 1.45 inch display colors: green=clear, yellow=caution, orange=warning, red=critical
+Charging procedure: plug USB-C into 10000mAh LiPo (5V standard charger)
+SenseCraft Mate app guide: how to read alerts and history
+Safety guidelines: never block camera lens or speaker on clear enclosure
+Emergency removal procedure: how to remove Watcher in under 2 minutes
+Troubleshooting: no beeps, WiFi offline, display blank, OTA failed"
+Caregiver Training Session,"Live demonstration: all alert types, charging, SenseCraft Mate app, emergency removal, when to call support","High",To Do,2026-07-08,Vinod,Week 11,Training,Training,"Schedule training session with caregiver
+Demonstrate all 3 beep patterns at real distances
+Show 1.45 inch display color alerts live
+Demo SenseCraft Mate app: alerts, history, battery level
+Show 10000mAh LiPo charging procedure
+Explain automatic OTA firmware updates over WiFi
+Demonstrate emergency Watcher removal (2 minutes)
+Provide printed user manual
+Get caregiver sign-off form"
+Create Weekly Review Log,"Maintain weekly-reviews/ entries for each of 12 weeks: hours, firmware progress, test results, blockers","High",To Do,2026-07-09,Vinod,Week 11,Admin,Admin,"Use weekly-reviews/TEMPLATE.md for each week
+Track: build hours, firmware milestones hit, test pass rates
+Log SenseCraft Watcher health status each week
+Document wins and blockers per week
+Identify schedule risks early
+Note any spec changes (update relevant .md files)"
+Create Testing & Validation Report,"Formal report: SenseCraft detection accuracy, battery life, all safety test results, edge cases, recommendations","High",To Do,2026-07-10,Vinod,Week 11,Documentation,Documentation,"Compile all data from tests/obstacle_test.py runs
+Create accuracy table: precision, recall, F1 by obstacle type
+Document 10000mAh LiPo runtime results (actual measured hours)
+List all edge cases found (low light, fast approach, etc.)
+Safety protocol results (all scenarios pass/fail)
+Recommendations for CAREC v2.0 (rear detection, cliff sensor via Grove IIC)
+Sign-off from caregiver (and therapist if available)"
+Update GitHub Documentation,"Final push: all docs current, CONTRIBUTING.md added, README badges accurate, GitHub Pages published","High",To Do,2026-07-12,Vinod,Week 11,Documentation,Documentation,"Verify README.md reflects SenseCAP Watcher W1-A Clear Enclosure at $59.99
+Verify all spec references are OV5647 (not OV5648)
+Create CONTRIBUTING.md (how to contribute to CAREC open-source)
+Publish GitHub Pages (project landing page)
+Write launch post: CAREC open-source wheelchair safety system
+Update all README badges (version, status, hardware)
+Final MIT license check"
+Go/No-Go Decision Point,"Assess: safe for daily child use? All success criteria met? Caregiver confidence? Therapist approval?","High",To Do,2026-07-15,Vinod,Week 11-12,Milestone,Milestone,"Review all 50+ obstacle test results
+Verify >85% detection accuracy achieved
+Verify <5% false positive rate achieved
+Verify <200ms latency (camera frame to first beep)
+Verify 8+ hour battery runtime confirmed
+Caregiver sign-off received
+Therapist sign-off received (if available)
+All documentation complete
+Document GO/NO-GO decision in writing
+Proceed to Phase 4 (daily use) only on clear GO"
+Phase 3 Complete and Production Ready,"CAREC validated, documented, caregiver trained, approved for daily use, published as open-source project","High",To Do,2026-07-20,Vinod,Week 12,90-day Plan,Milestone,"All testing complete and pass criteria met
+All documentation finalized
+Caregiver fully trained and signed off
+CAREC deployed for supervised daily use
+Zero critical issues outstanding
+GitHub repo public with full docs and firmware
+Post-launch support plan documented"
+ONGOING TASKS - Daily,"Monitor SenseCAP Watcher in daily wheelchair use, respond to caregiver feedback, log performance","High",To Do,2026-07-25,Vinod,Ongoing,90-day Plan,Maintenance,"Check SenseCraft Mate app daily for error alerts
+Monitor caregiver reports of missed detections or false positives
+Log anomalies with timestamp and scenario description
+Check Watcher is still mounted securely
+Verify 10000mAh battery charged before each school day"
+Weekly System Check,"Power cycle Watcher, run 3-point obstacle test, verify SenseCraft Mate connectivity, check battery health","Medium",To Do,2026-07-27,Vinod,Weekly,90-day Plan,Maintenance,"Power cycle: hold button, confirm clean reboot
+3-point obstacle test: chair at 30cm (RED), 80cm (YELLOW), 120cm (GREEN) — verify 3 alert tiers
+Verify SenseCraft Mate BLE connection active
+Verify WiFi connected (OTA check ran)
+Battery health: confirm charging to 100% over USB-C
+Update weekly-reviews/ log with status"
+Monthly Performance Analysis,"Review metrics from past month, compare to success criteria, identify trends, plan next month improvements","Medium",To Do,2026-08-01,Vinod,Monthly,90-day Plan,Analysis,"Compile monthly detection accuracy from test logs
+Compare precision/recall to >85% target
+Analyze false positive trends
+Battery degradation check (compare runtime month over month)
+Review all caregiver-reported incidents
+Plan firmware improvements or threshold adjustments
+Document lessons learned in monthly review"
+Post-Launch Support and Feedback,"Collect caregiver feedback, log issues in GitHub, prioritize fixes, plan CAREC v2.0 features","Medium",To Do,2026-08-05,Vinod,Ongoing,90-day Plan,Support,"Monthly feedback session with caregiver
+Log issues in GitHub Issues (bugs, UX friction, false positives)
+Prioritize: safety-critical bugs first, UX improvements second
+Plan CAREC v2.0: rear obstacle detection (Grove IIC + HC-SR04), cliff sensor, louder external speaker option
+Update open-source documentation based on production learnings"

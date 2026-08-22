@@ -1,0 +1,56 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code internal state — track skills/commands/rules/agents, ignore harness state + personal files
+.claude/worktrees/
+.claude/cache/
+.claude/projects/
+.claude/local/
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ESP-IDF build output
+firmware/build/
+firmware/sdkconfig
+firmware/managed_components/
+firmware/dependencies.lock
+*.elf
+*.map
+
+# clangd index (regenerated)
+firmware/.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets — never commit credentials
+.env
+*.key
+firmware/config/wifi_config.h
+
+# Firmware build artefacts
+firmware/releases/*.bin
+firmware/releases/*.elf
+firmware/releases/*.map
+logs/
+
+# Test results (generated)
+tests/results/*.json
+tests/results/*.log
+tests/__pycache__/
+
+# Hardware / media (large files)
+hardware/photos/*.jpg
+hardware/photos/*.png
+hardware/datasheets/*.pdf
+assets/audio/*.wav
+assets/audio/*.mp3

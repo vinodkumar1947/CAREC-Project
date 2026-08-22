@@ -1,0 +1,9 @@
+# Project owner and release authority
+* @vinodkumar1947
+
+# Safety, physical integration, and release-sensitive paths
+/hardware/ @vinodkumar1947
+/firmware/ @vinodkumar1947
+/hardware_bridge/ @vinodkumar1947
+/docs/safety/ @vinodkumar1947
+/.github/workflows/ @vinodkumar1947

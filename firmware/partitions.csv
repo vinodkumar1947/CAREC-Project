@@ -1,0 +1,16 @@
+# CAREC partition table — SenseCAP Watcher W1-A (16 MB flash)
+#
+# WARNING: Never flash this partition table to the device.
+# Use  idf.py app-flash  (not  idf.py flash) to preserve:
+#   • nvsfactory at 0x9000 — factory EUI / device identity
+#   • Original Seeed partition table at 0x8000
+#
+# This file is used only by  idf.py build  to size-check the app binary.
+# The actual partition layout on the device is set by Seeed factory firmware.
+#
+# Name,     Type,  SubType,  Offset,    Size
+nvs,        data,  nvs,      0x9000,    0x5000
+otadata,    data,  ota,      0xe000,    0x2000
+app0,       app,   ota_0,    0x10000,   0x300000
+app1,       app,   ota_1,    0x310000,  0x300000
+spiffs,     data,  spiffs,   0x610000,  0x9F0000
