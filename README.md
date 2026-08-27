@@ -1,131 +1,104 @@
 # CAREC
 
-## Open-source, simulation-first assistive mobility research
+## Open-source, simulation-first intelligent wheelchair engineering
 
 ![CAREC vision: a wheelchair user, family member, therapist, and a matching digital-twin simulation](assets/readme/carec-vision.png)
 
-CAREC is building reusable software for safer powered-wheelchair mobility. Our long-term aim is supervised navigation and shared control: the user remains in command while software helps detect hazards, limit unsafe motion, and navigate accessible indoor spaces.
+CAREC’s mission is to develop transparent, testable technology that can make powered-wheelchair mobility safer and more independent while preserving user control. It addresses the limited availability of adaptable, openly engineered assistance for obstacle awareness, shared control, and indoor navigation.
 
-The project is developed in simulation first. Contributors do not need a wheelchair, sensors, embedded boards, or a GPU. Physical integration is isolated behind reviewed, wheelchair-specific adapters and is performed only by the project owner on a controlled prototype.
+> **Current phase: early-stage research and simulation foundation.** CAREC is not a medical device, is not certified for clinical use, and does not currently provide validated autonomous wheelchair operation. Community builds must not be connected to an occupied wheelchair.
 
-> **Current maturity: research prototype.** CAREC is not a medical device, is not approved for unsupervised use, and must not be connected to wheelchair motors from community builds.
+## Vision and capability evolution
 
-## Why CAREC exists
+CAREC is intended to progress incrementally:
 
-For wheelchair users, families, therapists, and clinicians, CAREC explores whether open engineering can provide:
-
-- earlier awareness of obstacles and unsafe conditions;
-- shared control that respects the user's intent;
-- supervised navigation through homes, schools, and care environments;
-- transparent safety behavior that can be tested and discussed;
-- adaptable software rather than dependence on one wheelchair manufacturer.
-
-For engineers, CAREC provides a reproducible robotics platform for perception, localization, navigation, human-machine interaction, simulation, and safety testing.
-
-## What we mean by compatibility
-
-There is no universal wheelchair motor or joystick interface. CAREC therefore separates the software into layers:
-
-```text
-User input or supervised autonomy
-               |
-        Navigation controller
-               |
-      Independent safety supervisor
-               |
-       Standard safe-motion interface
-               |
-  Simulator adapter or owner-only hardware adapter
-```
-
-The core can be platform-agnostic. Each physical wheelchair model still requires an individually reviewed adapter, configuration, and validation. Manual wheelchairs require a separate powered drive system and are not made autonomous by software alone.
-
-## Planned capability levels
-
-| Level | Capability | Contributor hardware |
+| Level | Mode | Intent |
 |---|---|---|
-| L0 | Obstacle warning research | None for most tasks |
-| L1 | Independent collision monitoring and safe stop | None |
-| L2 | Shared control: user drives, software limits unsafe motion | None |
-| L3 | Supervised indoor point-to-point navigation | None |
-| L4 | Advanced indoor navigation and safe recovery research | None |
-| Physical validation | One approved wheelchair-specific prototype | Project owner only |
+| 1 | Manual drive | The user commands motion. Monitoring may trigger only explicitly specified safety intervention. |
+| 2 | Assisted drive | Collision avoidance, speed limiting, edge detection, doorway assistance, path correction, and safe stop support the user. |
+| 3 | Autonomous drive | Human-supervised indoor mapping, localization, route planning, dynamic avoidance, and destination commands. |
 
-L2 shared control is the first major product objective. Full unattended autonomy is not an initial claim or release target.
-
-## Current status
-
-The repository contains an earlier SenseCAP Watcher obstacle-warning firmware prototype. It detects supported object classes, estimates approximate distance from bounding boxes, and produces visual/audio/BLE alerts. This code is useful research input, but it is not motor-control software and has unresolved validation work.
-
-The simulation-first autonomy workspace is at its foundation stage: the development container, status schema, issue structure, and CI checks exist, but the ROS packages, digital wheelchair, and safety kernel are not yet implemented.
-
-See the approved research baseline in [PRODUCT.md](PRODUCT.md), the
-[capability levels](docs/specifications/AUTONOMY_LEVELS.md), evidence-based
-[project scorecard](docs/status/PROJECT_SCORECARD.md), [roadmap](ROADMAP.md),
-and [project log](PROJECT_LOG.md).
-
-Work is organized in the current [GitHub issue backlog](https://github.com/vinodkumar1947/CAREC-Project/issues) and five simulation-first milestones. Closed issues labeled `legacy` belong to the previous hardware-first plan.
-
-## Software direction
-
-The no-cost core stack is:
-
-- Ubuntu 24.04 LTS;
-- ROS 2 Jazzy;
-- Gazebo Harmonic;
-- Nav2, RViz2, SLAM Toolbox, and rosbag2;
-- C++ for runtime and safety components;
-- Python for tooling, experiments, metrics, and tests;
-- CPU-first simulation, with optional GPU backends later;
-- GitHub Issues, Projects, Actions, and Pages for collaboration and reporting.
-
-NVIDIA Isaac Sim and CARLA may become optional high-fidelity backends. They will not be required for normal contributions.
-
-## Repository map
-
-```text
-firmware/       Existing obstacle-warning firmware prototype
-tests/          Existing host-side firmware behavior tests
-autonomy_ws/    ROS 2 autonomy workspace (foundation stage)
-evaluation/     Machine-readable progress and future scenario evidence
-scripts/        Contributor bootstrap and repository validation
-docs/           Vision, architecture, safety, status, and guides
-hardware/       Owner-managed prototype documentation
-research/       Research writing and references
-.github/        Contribution forms, ownership, and CI
+```mermaid
+flowchart LR
+  M["Level 1: Manual"] --> A["Level 2: Assisted"] --> N["Level 3: Autonomous"]
+  S["Safety evidence"] --> M
+  S --> A
+  S --> N
+  T["Simulation → controlled testing → supervised validation"] --> S
 ```
 
-The first dependency-free reference simulator and safety fault suite live in
-`autonomy_ws/carec_simulation/` and `tests/unit/`. ROS 2/Gazebo packages,
-expanded scenario libraries, evaluation reports, and an owner-controlled
-`hardware_bridge/` remain planned.
+Autonomous mobility is safety-critical. Each capability must earn promotion through simulation, controlled testing, hardware-in-the-loop evidence, and human-supervised validation.
 
-The initial contributor environment is available through [the development container](.devcontainer/devcontainer.json). After opening the repository in the container, run:
+## Initial conceptual architecture
+
+```mermaid
+flowchart TD
+  U["User / Caregiver"] --> H["Human-Machine Interface"] --> B["Mission / Behavior Manager"]
+  B --> M["Manual Drive"]
+  B --> A["Assisted Drive"]
+  B --> D["Autonomous Drive"] --> N["Navigation"]
+  N --> P["Perception"]
+  N --> L["Localization"]
+  P --> F["Sensor Fusion"]
+  L --> F
+  C["Camera"] --> F
+  R["LiDAR / range sensors"] --> F
+  I["IMU / encoders / ultrasonic"] --> F
+  M --> SS["Independent Safety Supervisor"]
+  A --> SS
+  N --> SS
+  F --> SS --> MC["Motor Controller"] --> W["Wheelchair Motors"]
+  E["Emergency stop / watchdog"] --> SS
+```
+
+This architecture is **Proposed**, not finalized. Physical motor interfaces remain isolated and owner-controlled.
+
+## Simulation first
+
+Most work must be possible without wheelchair hardware. The proposed future stack includes Ubuntu, ROS 2, a modern Gazebo release or equivalent, RViz, Nav2, SLAM, Python, C++, OpenCV, PyTorch, Docker/dev containers, and GitHub Actions. Choices requiring evidence are tracked as [ADRs](docs/11-decisions/README.md); no unapproved option is a permanent commitment.
+
+## Workstreams
+
+Simulation; ROS 2/robotics; navigation; computer vision; AI/ML; sensor fusion; firmware; hardware; mobile; cloud; safety; testing; and documentation. Remote contributors can build nodes, algorithms, models, synthetic data, scenarios, mocks, tests, user interfaces, CI, and safety analyses without physical equipment.
+
+## Quick start
 
 ```bash
+git clone <repository-url>
+cd CAREC-Project
 ./scripts/bootstrap.sh --check
+python3 -m pytest tests/obstacle_test.py tests/unit -v
 ```
 
-## Contributing
+Then read [Getting Started](docs/08-contributors/getting-started.md), select a `status:ready` issue, create a branch such as `simulation/CARE-###`, and open a pull request. Do not commit feature work directly to `main`.
 
-The initial contributor cohort is a distributed team of ten early-career engineers. Work is asynchronous and organized as small, testable GitHub issues. No direct push to `main` is expected; every change uses a short-lived branch and pull request.
+## Repository navigation
 
-Start with:
+| Area | Purpose |
+|---|---|
+| [`docs/`](docs/README.md) | Requirements, architecture, safety, testing, decisions, and contributor guidance |
+| [`simulation/`](simulation/README.md) | Future simulator models, environments, sensors, scenarios, and tests |
+| `software/` | Future ROS 2, navigation, perception, AI, fusion, and shared code |
+| [`autonomy_ws/`](autonomy_ws/README.md) | Existing dependency-free reference simulation foundation |
+| [`firmware/`](firmware/README.md) | Existing warning prototype and future isolated embedded work |
+| [`hardware/`](hardware/README.md) | Owner-managed hardware records and interfaces |
+| [`mobile/`](mobile/README.md) / [`cloud/`](cloud/README.md) | Proposed user/caregiver and optional backend components |
+| [`.github/`](.github) | Issue forms, pull-request template, ownership, and CI |
 
-1. [Project aim and boundaries](docs/vision/PROJECT_AIM.md)
-2. [First contribution guide](docs/contributors/FIRST_CONTRIBUTION.md)
-3. [Team workflow](docs/contributors/TEAM_WORKFLOW.md)
-4. [Contribution policy](CONTRIBUTING.md)
-5. [Architecture](docs/architecture/AUTONOMY_ARCHITECTURE.md)
+## Roadmap and collaboration
 
-Community code may propose motion commands but may never bypass the safety supervisor or directly communicate with physical motors.
+The roadmap moves from foundation and a digital wheelchair through manual simulation, assistance, navigation, AI perception, hardware prototyping, HIL, and controlled testing. See [ROADMAP.md](ROADMAP.md) and [M0 — CAREC Simulation Foundation](docs/09-project-management/milestones.md).
 
-## Governance and access
+- [Issues](https://github.com/vinodkumar1947/CAREC-Project/issues)
+- [Discussions](https://github.com/vinodkumar1947/CAREC-Project/discussions)
+- [Published GitBook documentation](https://carec.gitbook.io/carec-docs)
+- [Repository documentation source](docs/README.md)
+- [CAREC public project page](https://vinodtech.com/carec/)
 
-Vinod Kumar is the repository owner, product owner, release authority, and sole physical-hardware integrator. Selected contributors may receive limited repository access. Non-safety reviews can be delegated; safety-critical merges, releases, and hardware enablement remain owner-controlled.
+Repository Markdown is the engineering source of truth. GitBook should be
+configured with Git Sync against `main` using [`.gitbook.yaml`](.gitbook.yaml)
+and [`docs/SUMMARY.md`](docs/SUMMARY.md). The public project page is a concise
+introduction and must not publish capabilities or performance claims beyond
+the evidence recorded here.
 
-Contributions are accepted under the repository license. Repository ownership does not automatically transfer a contributor's copyright; see [CONTRIBUTING.md](CONTRIBUTING.md) before submitting substantial work.
-
-## License
-
-CAREC is licensed under the [MIT License](LICENSE). This license permits research and development but provides no warranty or medical certification.
+Contributions are welcome from engineers, researchers, accessibility specialists, clinicians, caregivers, wheelchair users, technical writers, and testers. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). CAREC is provided under the [MIT License](LICENSE), without warranty or regulatory approval.

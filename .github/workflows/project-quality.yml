@@ -28,5 +28,8 @@ jobs:
       - name: Check contributor bootstrap
         run: ./scripts/bootstrap.sh --check
 
+      - name: Check local Markdown links
+        run: python3 scripts/check_markdown_links.py
+
       - name: Check whitespace
         run: git diff --check HEAD^ HEAD

@@ -1,0 +1,32 @@
+name: Feature
+description: Propose a user or engineering capability
+title: "[FEATURE] "
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: summary
+    attributes: {label: Summary}
+    validations: {required: true}
+  - type: textarea
+    id: motivation
+    attributes: {label: Motivation, description: "Who benefits and what problem is solved?"}
+    validations: {required: true}
+  - type: textarea
+    id: solution
+    attributes: {label: Proposed solution}
+    validations: {required: true}
+  - type: textarea
+    id: alternatives
+    attributes: {label: Alternatives}
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Acceptance criteria, placeholder: "- [ ] ..."}
+    validations: {required: true}
+  - type: textarea
+    id: dependencies
+    attributes: {label: Dependencies}
+  - type: dropdown
+    id: workstream
+    attributes: {label: Workstream, options: [Simulation, ROS2, Navigation, Vision, AI/ML, Sensor Fusion, Firmware, Hardware, Mobile, Cloud, Safety, Documentation, Other]}
+    validations: {required: true}

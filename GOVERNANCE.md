@@ -1,34 +1,45 @@
 # CAREC Governance
 
-## Authority
+Status: Draft
 
-Vinod Kumar is project owner, product owner, release authority, trademark
-authority and sole physical-integration authority. Maintainer permissions do
-not authorize physical deployment or product claims.
+Owner: Project Maintainer
 
-## Decisions
+Last Updated: 2026-08-23
 
-- Routine S0/S1 work may be reviewed by an assigned workstream reviewer.
-- S2 work requires scenario evidence and an independent reviewer.
-- S3 safety, command, adapter, firmware-release and physical changes require
-  owner approval.
-- Intended-use, risk-acceptance, licensing and public product claims are owner
-  decisions recorded in version control or an architecture decision record.
+Related Issues: TBD
 
-Maintainers disclose conflicts of interest. Technical disagreement is resolved
-with requirements, evidence and documented trade-offs; the owner makes the
-final scoped decision.
+Related ADRs: TBD
 
-## Access and continuity
+## Roles
 
-Contributors receive least-privilege access. Protected branches, required
-reviews and CI must be configured in GitHub; `CODEOWNERS` alone is not an
-enforcement mechanism. At least one documented backup release procedure should
-exist before external pilots to reduce single-person operational risk.
+### Project Maintainer
 
-## Intellectual property
+Administers the repository, appoints roles, resolves final scoped architecture decisions, accepts residual risk, approves releases, and controls physical integration. Vinod Kumar currently holds this role.
 
-Contributions are accepted under `CONTRIBUTING.md` and the MIT License unless a
-separate written agreement applies. Repository administration does not by
-itself transfer contributor copyright. Trademark rights and the right to call a
-build an “official CAREC release” remain with the project owner.
+### Workstream Lead
+
+Maintains a technical area, prepares scoped issues, coordinates interfaces, reviews evidence, and escalates cross-cutting or safety decisions. Appointment does not authorize physical deployment.
+
+### Contributor
+
+Works on assigned or maintainer-approved issues through short-lived branches and pull requests. Contributors follow documented interfaces, tests, conduct, security, privacy, and safety boundaries.
+
+### Reviewer
+
+Independently checks correctness, maintainability, acceptance criteria, tests, documentation, dependencies, and compatibility. Authors do not provide their own sole approval.
+
+### Safety Reviewer
+
+Reviews changes affecting motion, actuation, perception used for intervention, emergency behavior, safety requirements, hazards, or validation. Safety-critical physical changes still require Project Maintainer approval.
+
+## Decisions and permissions
+
+Routine reversible decisions may be made within an approved issue. Cross-workstream, long-lived, costly, safety-relevant, or interface-breaking decisions use an [ADR](docs/11-decisions/README.md). Evidence and documented trade-offs guide discussion; the Project Maintainer makes the final scoped decision.
+
+Contributors work through branches and pull requests. Critical files should use GitHub branch protection, required checks, `CODEOWNERS`, and at least one independent review. Least-privilege access is preferred. Direct feature commits to `main` are prohibited.
+
+Safety classes remain S0 documentation, S1 tooling/simulation assets, S2 perception/localization/planning, and S3 safety/velocity/physical adapter/release. S3 changes require safety review and maintainer approval.
+
+## Releases, continuity, and intellectual property
+
+Only the Project Maintainer may designate an official CAREC release or authorize physical integration. Before external pilots, document backup release administration and incident response. Contributions are accepted under [CONTRIBUTING.md](CONTRIBUTING.md) and the MIT License unless a separate written agreement applies; repository access does not transfer copyright or trademark rights.

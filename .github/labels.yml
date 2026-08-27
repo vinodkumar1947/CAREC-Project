@@ -1,0 +1,32 @@
+# Proposed labels for repository-owner setup (for example with a label-sync action or GitHub CLI).
+- {name: "workstream:simulation", color: "1d76db", description: "Simulation models, worlds, sensors, or scenarios"}
+- {name: "workstream:ros2", color: "1d76db", description: "ROS 2 packages and interfaces"}
+- {name: "workstream:navigation", color: "1d76db", description: "Mapping, localization, planning, and control"}
+- {name: "workstream:ai", color: "1d76db", description: "AI and machine learning"}
+- {name: "workstream:vision", color: "1d76db", description: "Computer vision"}
+- {name: "workstream:firmware", color: "1d76db", description: "Embedded firmware"}
+- {name: "workstream:hardware", color: "1d76db", description: "Electronics and mechanical hardware"}
+- {name: "workstream:mobile", color: "1d76db", description: "User and caregiver mobile interfaces"}
+- {name: "workstream:cloud", color: "1d76db", description: "Optional backend and telemetry"}
+- {name: "workstream:safety", color: "b60205", description: "Safety engineering"}
+- {name: "workstream:docs", color: "1d76db", description: "Documentation"}
+- {name: "type:bug", color: "d73a4a", description: "Incorrect behavior"}
+- {name: "type:feature", color: "a2eeef", description: "New capability"}
+- {name: "type:task", color: "c5def5", description: "Scoped work"}
+- {name: "type:research", color: "d4c5f9", description: "Bounded investigation"}
+- {name: "type:safety", color: "b60205", description: "Hazard or safety concern"}
+- {name: "status:ready", color: "0e8a16", description: "Ready to assign"}
+- {name: "status:in-progress", color: "fbca04", description: "Work underway"}
+- {name: "status:blocked", color: "b60205", description: "Blocked by a named dependency"}
+- {name: "status:review", color: "5319e7", description: "Awaiting review"}
+- {name: "status:needs-discussion", color: "d4c5f9", description: "Needs design discussion"}
+- {name: "priority:P0", color: "b60205", description: "Critical"}
+- {name: "priority:P1", color: "d93f0b", description: "High"}
+- {name: "priority:P2", color: "fbca04", description: "Normal"}
+- {name: "priority:P3", color: "c2e0c6", description: "Low"}
+- {name: "difficulty:good-first-issue", color: "7057ff", description: "Mentored newcomer task"}
+- {name: "difficulty:beginner", color: "bfdadc", description: "Limited project context needed"}
+- {name: "difficulty:intermediate", color: "fef2c0", description: "Some domain experience needed"}
+- {name: "difficulty:advanced", color: "f9d0c4", description: "Deep domain or cross-system work"}
+- {name: "hardware:not-required", color: "0e8a16", description: "Fully remote/hardware-independent"}
+- {name: "hardware:required", color: "b60205", description: "Requires owner-controlled hardware"}

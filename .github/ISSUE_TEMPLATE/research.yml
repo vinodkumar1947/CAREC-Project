@@ -1,0 +1,28 @@
+name: Research
+description: Investigate a bounded question and produce evidence
+title: "[RESEARCH] "
+labels: ["type:research"]
+body:
+  - type: textarea
+    id: question
+    attributes: {label: Question}
+    validations: {required: true}
+  - type: textarea
+    id: background
+    attributes: {label: Background}
+    validations: {required: true}
+  - type: textarea
+    id: options
+    attributes: {label: Options to investigate}
+    validations: {required: true}
+  - type: textarea
+    id: output
+    attributes: {label: Expected output}
+    validations: {required: true}
+  - type: textarea
+    id: recommendation
+    attributes: {label: Recommendation requested, description: "State the decision this research should inform."}
+    validations: {required: true}
+  - type: textarea
+    id: references
+    attributes: {label: References}

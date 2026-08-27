@@ -1,39 +1,39 @@
+## Issue reference
+
+Closes CARE- / #
+
 ## Summary
 
-What changed, and which issue does it close?
+## Changes made
 
-Closes #
+## Testing performed
 
-## Evidence
-
-- [ ] Acceptance criteria pass
-- [ ] Tests added or updated
-- [ ] Documentation updated
-- [ ] Logs, metrics, or screenshots attached when relevant
-
-Commands run:
+Commands and results:
 
 ```text
 
 ```
 
-## Safety
+## Screenshots / logs
+
+<!-- Attach when relevant; remove secrets and personal/participant data. -->
+
+## Safety impact
 
 Classification: S0 / S1 / S2 / S3
 
-- [ ] This change cannot publish commands to physical wheelchair hardware
-- [ ] Failure behavior and rollback are described when applicable
-- [ ] No personal health information, secrets, or identifiable participant data is included
+Affected requirements/hazards and failure behavior:
 
-Affected requirement IDs:
+## Documentation impact
 
-Affected hazard IDs:
+## Checklist
 
-- [ ] Traceability was updated, or this change does not affect requirements
-- [ ] Interfaces/configuration compatibility was reviewed
-- [ ] New dependencies and licenses were declared
-- [ ] No new unauthenticated command or update path was introduced
-
-## Reviewer notes
-
-What should the reviewer inspect most carefully?
+- [ ] This PR is focused and uses an approved branch (`feature/CARE-###`, `fix/CARE-###`, `research/CARE-###`, `docs/CARE-###`, or `simulation/CARE-###`).
+- [ ] Acceptance criteria are satisfied and evidence is attached.
+- [ ] Tests were added/updated and relevant local checks pass.
+- [ ] Documentation, interfaces, requirements, hazards, and traceability were updated when affected.
+- [ ] Safety and rollback/degraded behavior are described.
+- [ ] No code bypasses the safety supervisor or enables physical motion by default.
+- [ ] No secrets, personal health information, or identifiable participant data are included.
+- [ ] New dependencies and licenses are declared.
+- [ ] Screenshots/logs are attached or not applicable.

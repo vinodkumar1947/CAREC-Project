@@ -1,46 +1,36 @@
-name: Engineering task
-description: A scoped implementation, test, simulation, or documentation task
+name: Task
+description: Define a scoped engineering deliverable
 title: "[TASK] "
-labels: []
+labels: ["type:task"]
 body:
   - type: textarea
-    id: outcome
-    attributes:
-      label: Outcome
-      description: Describe the observable result, not just the activity.
-    validations:
-      required: true
-  - type: dropdown
-    id: hardware
-    attributes:
-      label: Hardware requirement
-      options:
-        - None
-        - Owner-only prototype
-    validations:
-      required: true
-  - type: dropdown
-    id: safety
-    attributes:
-      label: Safety classification
-      options:
-        - S0 - documentation only
-        - S1 - tooling or simulation asset
-        - S2 - perception, localization, or planning
-        - S3 - safety, velocity, release, or physical adapter
-    validations:
-      required: true
+    id: objective
+    attributes: {label: Objective, description: "State the observable outcome."}
+    validations: {required: true}
+  - type: textarea
+    id: background
+    attributes: {label: Background}
+    validations: {required: true}
+  - type: textarea
+    id: deliverables
+    attributes: {label: Deliverables, placeholder: "- [ ] ..."}
+    validations: {required: true}
   - type: textarea
     id: acceptance
-    attributes:
-      label: Acceptance criteria
-      description: Provide an objective checklist and exact test command where possible.
-    validations:
-      required: true
+    attributes: {label: Acceptance criteria, description: "Include exact testing instructions where possible."}
+    validations: {required: true}
   - type: textarea
-    id: boundaries
-    attributes:
-      label: Files and interfaces in scope
-      description: Identify package ownership and anything that must not change.
-    validations:
-      required: true
+    id: dependencies
+    attributes: {label: Dependencies}
+  - type: dropdown
+    id: complexity
+    attributes: {label: Estimated complexity, options: [Good first issue, Beginner, Intermediate, Advanced]}
+    validations: {required: true}
+  - type: dropdown
+    id: hardware
+    attributes: {label: Required hardware, options: ["None", "Owner-only prototype", "TBD"]}
+    validations: {required: true}
+  - type: dropdown
+    id: workstream
+    attributes: {label: Workstream, options: [Architecture, Simulation, ROS2, Navigation, Vision, AI/ML, Sensor Fusion, Firmware, Hardware, Mobile, Cloud, Safety, Testing, Documentation]}
+    validations: {required: true}

@@ -1,0 +1,21 @@
+title: "[Idea] "
+labels: []
+body:
+  - type: textarea
+    id: problem
+    attributes: {label: Problem or opportunity}
+    validations: {required: true}
+  - type: textarea
+    id: idea
+    attributes: {label: Idea}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Evidence, constraints, or references}
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: I have not included private vulnerability details, personal data, or unsafe occupied-test instructions.
+          required: true

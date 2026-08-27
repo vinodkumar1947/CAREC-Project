@@ -300,7 +300,7 @@ void loop() {
 
 > 🟡 Stub = compiles and runs, but real hardware calls need to replace TODO bodies. See Week 2 plan.
 
-Full API reference → [`docs/api/firmware_api.md`](api/firmware_api.md)
+Full API reference → [`docs/api/firmware_api.md`](../api/firmware_api.md)
 
 ---
 
@@ -474,7 +474,7 @@ CAREC ready.
 | Serial garbage | Set baud rate to 115200 |
 | "Arduino.h not found" in editor | IntelliSense false positive — compiles fine |
 
-Full guide → [`docs/guides/programming_guide.md`](guides/programming_guide.md)
+Full guide → [`docs/guides/programming_guide.md`](../guides/programming_guide.md)
 
 ---
 
@@ -546,7 +546,7 @@ Every obstacle detection sends a JSON string via BLE GATT notify:
 | iOS | https://apps.apple.com/us/app/sensecraft/id1619944834 |
 | Android | https://play.google.com/store/apps/details?id=cc.seeed.sensecapmate |
 
-Pairing steps → [`mobile/README.md`](../mobile/README.md)
+Pairing steps → [`mobile/README.md`](../../mobile/README.md)
 
 ---
 
@@ -614,7 +614,7 @@ Step 9: Fully tighten clamp screw
 
 **Install time:** 5 min · **Remove time:** 2 min · **Wheelchair damage:** Zero
 
-Full guide → [`docs/guides/mounting_guide.md`](guides/mounting_guide.md)
+Full guide → [`docs/guides/mounting_guide.md`](../guides/mounting_guide.md)
 
 ---
 
@@ -695,8 +695,8 @@ Tests verify: zone classification logic, distance thresholds, beep pattern mappi
 | Battery depletes | 50+ hr runtime · pre-use battery check |
 | OTA mid-alert | OTA safety gate (GREEN zone only) |
 
-Full FMEA → [`docs/safety/failure_modes.md`](safety/failure_modes.md)  
-Pre-use checklist → [`docs/safety/safety_checklist.md`](safety/safety_checklist.md)
+Full FMEA → [`docs/safety/failure_modes.md`](../safety/failure_modes.md)
+Pre-use checklist → [`docs/safety/safety_checklist.md`](../safety/safety_checklist.md)
 
 ---
 
@@ -770,7 +770,7 @@ CAREC is being submitted to **ISICVA 2026** — 2nd International Symposium on I
 **Track:** Track 4 — Smart Vision Applications (Assistive technologies)  
 **Paper title:** *CAREC: A Real-Time Edge AI Obstacle Detection System for Pediatric Electric Wheelchairs Using On-Device Computer Vision*
 
-Research folder → [`research/ISICVA2026/`](../research/ISICVA2026/README.md)
+Research folder → [`research/ISICVA2026/`](../../research/ISICVA2026/README.md)
 
 ---
 
@@ -861,18 +861,18 @@ CAREC-Project/
 
 | Document | Purpose |
 |----------|---------|
-| [`docs/guides/programming_guide.md`](guides/programming_guide.md) | Compile + flash guide |
-| [`docs/api/firmware_api.md`](api/firmware_api.md) | Module API reference |
-| [`docs/guides/quick_reference.md`](guides/quick_reference.md) | 30-day action checklist |
-| [`docs/guides/mounting_guide.md`](guides/mounting_guide.md) | Physical installation |
-| [`docs/guides/caregiver_guide.md`](guides/caregiver_guide.md) | Non-technical caregiver guide |
-| [`docs/safety/safety_checklist.md`](safety/safety_checklist.md) | Pre-use safety checks |
-| [`docs/safety/failure_modes.md`](safety/failure_modes.md) | FMEA — 7 failure modes |
-| [`hardware/BOM.md`](../hardware/BOM.md) | Bill of materials |
-| [`hardware/schematics/watcher_pinout.md`](../hardware/schematics/watcher_pinout.md) | GPIO reference |
-| [`mobile/README.md`](../mobile/README.md) | BLE GATT + SenseCraft Mate |
-| [`weekly-reviews/week-01.md`](../weekly-reviews/week-01.md) | Week 1 log |
-| [`research/ISICVA2026/README.md`](../research/ISICVA2026/README.md) | Conference submission |
+| [`docs/guides/programming_guide.md`](../guides/programming_guide.md) | Compile + flash guide |
+| [`docs/api/firmware_api.md`](../api/firmware_api.md) | Module API reference |
+| [`docs/guides/quick_reference.md`](../guides/quick_reference.md) | 30-day action checklist |
+| [`docs/guides/mounting_guide.md`](../guides/mounting_guide.md) | Physical installation |
+| [`docs/guides/caregiver_guide.md`](../guides/caregiver_guide.md) | Non-technical caregiver guide |
+| [`docs/safety/safety_checklist.md`](../safety/safety_checklist.md) | Pre-use safety checks |
+| [`docs/safety/failure_modes.md`](../safety/failure_modes.md) | FMEA — 7 failure modes |
+| [`hardware/BOM.md`](../../hardware/BOM.md) | Bill of materials |
+| [`hardware/schematics/watcher_pinout.md`](../../hardware/schematics/watcher_pinout.md) | GPIO reference |
+| [`mobile/README.md`](../../mobile/README.md) | BLE GATT + SenseCraft Mate |
+| [`weekly-reviews/week-01.md`](../../weekly-reviews/week-01.md) | Week 1 log |
+| [`research/ISICVA2026/README.md`](../../research/ISICVA2026/README.md) | Conference submission |
 
 ### Contact
 

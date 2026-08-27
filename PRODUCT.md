@@ -40,7 +40,7 @@ and separate validation.
 
 ## Product objective
 
-The first product evidence target is **L2 shared control in simulation**: user
+The first product evidence target is **Level 2 assisted drive/shared control in simulation**: user
 commands pass through a non-bypassable safety supervisor, unsafe commands stop
 with a reason code, and every defined injected failure reaches a deterministic
 safe state.

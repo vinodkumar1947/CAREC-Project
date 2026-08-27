@@ -1,0 +1,35 @@
+name: Safety issue
+description: Record a hazard or safety concern for review
+title: "[SAFETY] "
+labels: ["type:safety", "workstream:safety"]
+body:
+  - type: markdown
+    attributes: {value: "Do not publish exploitable vulnerabilities, personal data, or unsafe occupied-test instructions. Use SECURITY.md for private disclosure."}
+  - type: textarea
+    id: hazard
+    attributes: {label: Hazard}
+    validations: {required: true}
+  - type: textarea
+    id: scenario
+    attributes: {label: Scenario, description: "Describe the foreseeable event sequence and operating context."}
+    validations: {required: true}
+  - type: input
+    id: severity
+    attributes: {label: Severity, placeholder: "TBD if the scale has not been approved"}
+    validations: {required: true}
+  - type: input
+    id: probability
+    attributes: {label: Probability, placeholder: "TBD if unknown"}
+    validations: {required: true}
+  - type: textarea
+    id: consequence
+    attributes: {label: Potential consequence}
+    validations: {required: true}
+  - type: textarea
+    id: mitigation
+    attributes: {label: Proposed mitigation}
+    validations: {required: true}
+  - type: textarea
+    id: validation
+    attributes: {label: Validation approach}
+    validations: {required: true}

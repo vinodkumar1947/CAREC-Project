@@ -1,15 +1,24 @@
 # CAREC Capability and Claim Levels
 
-| Level | Capability | Permitted claim | Evidence gate |
+This document uses the same three capability levels as the root README and
+product requirements. Levels describe increasing motion authority; they are
+not claims that the capability is currently implemented or safe for physical
+use.
+
+| Level | Capability | Permitted research claim | Evidence gate |
 |---|---|---|---|
-| L0 | Hazard-awareness research | Detects selected hazards in stated scenarios | Dataset and scenario report |
-| L1 | Independent safety monitoring | Rejects defined unsafe simulated commands | Fault tests and safety report |
-| L2 | Shared control | User drives; simulator safety layer limits commands | Closed-loop scenario regression |
-| L3 | Supervised indoor navigation | Navigates defined indoor simulation ODD | Repeated mission metrics and recovery tests |
-| L4 | Advanced research autonomy | Research only; no unattended-use claim | Expanded ODD and independent review |
-| P0 | Unoccupied bench prototype | Owner-controlled engineering prototype | Electrical, timing, braking and fault evidence |
-| P1 | Supervised occupied research | No commercial or clinical claim | Separate ethical, regulatory and safety approval |
+| Level 1 | Manual drive with independent monitoring | User commands simulated motion; defined faults reach a safe state | Command, timeout, E-stop and feedback tests |
+| Level 2 | Assisted drive/shared control | User intent is transparently limited in published scenarios | Closed-loop regression, intervention metrics and safety review |
+| Level 3 | Supervised indoor autonomous drive | Navigation works only inside a stated simulation ODD | Repeated mission, recovery and human-override evidence |
+
+Physical validation is tracked separately:
+
+| Stage | Scope | Evidence gate |
+|---|---|---|
+| P0 | Owner-controlled, unoccupied bench prototype | Electrical, timing, braking, fault and adapter evidence |
+| P1 | Supervised occupied research | Separate ethical, regulatory, clinical/human-factors and safety authorization |
 
 Advancement is evidence-based; completing code does not automatically advance
 the project. “Autonomous wheelchair,” “safe,” “universal,” and medical-benefit
-claims require explicit owner approval and evidence appropriate to the market.
+claims require explicit owner approval and evidence appropriate to the intended
+market and use.

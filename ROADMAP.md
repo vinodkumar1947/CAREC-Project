@@ -1,89 +1,51 @@
 # CAREC Roadmap
 
-**Program start:** August 2026
+Status: Proposed
 
-**Strategy:** simulation first, CPU first, hardware isolated
+Owner: Project Maintainer
 
-**First release objective:** CAREC Sim 0.1 — Digital Wheelchair + Safety Kernel
+Last Updated: 2026-08-23
 
-Progress is awarded only when code is merged, automated tests pass, documentation exists, and acceptance evidence is recorded. Issue counts and lines of code are not progress measures.
+Related Issues: [Initial backlog](docs/09-project-management/initial-backlog.md)
 
-## Twelve-week foundation program
+Related ADRs: [Decision index](docs/11-decisions/README.md)
 
-### Weeks 1–2 — Contribution foundation
+No completion percentages are assigned without evidence. Advancement requires documented exit criteria and safety review.
 
-- Publish vision, non-goals, architecture, governance, and safety boundaries.
-- Protect `main`; require pull requests and passing checks.
-- Train all contributors with a documentation-only practice pull request.
-- Provide issue and PR templates, ownership rules, and definition of done.
-- Specify the development container and one-command workflow.
-- Resolve contradictions between firmware failure behavior, tests, and documentation.
+## Phase 0 — Foundation
 
-**Exit evidence:** every contributor completes one reviewed pull request; repository rules and CI are active.
+Requirements, architecture, repository structure, simulation-platform selection, contributor workflow, and preliminary safety framework. **Current phase.**
 
-### Weeks 3–5 — Digital wheelchair
+## Phase 1 — Digital Wheelchair
 
-- Create ROS 2 workspace and packages.
-- Model a generic powered wheelchair with configurable geometry.
-- Support differential, mid-wheel, and rear-wheel simulation profiles.
-- Add odometry, IMU, camera, depth, and LiDAR simulation interfaces.
-- Add keyboard/joystick teleoperation.
-- Build accessible apartment and corridor scenarios.
-- Record collisions, clearance, commands, and timing.
+Parameterized differential-drive model, motor behavior, encoders, IMU, simulated range sensors, and indoor world.
 
-**Exit evidence:** a clean checkout can launch and manually drive the simulated wheelchair with no special hardware.
+## Phase 2 — Manual Simulation
 
-### Weeks 6–8 — Independent safety kernel
+Joystick/keyboard input, teleoperation, velocity control, diagnostics, command timeout, and emergency stop.
 
-- Enforce speed, acceleration, and jerk limits.
-- Add command timeout and sensor-freshness monitoring.
-- Add footprint-aware collision monitoring.
-- Implement latched emergency-stop and explicit reset behavior.
-- Inject process crash, stale sensor, bad localization, and delayed-command faults.
-- Produce a machine-readable safety report.
+## Phase 3 — Assisted Driving
 
-**Exit evidence:** every defined injected failure reaches a deterministic safe state in simulation.
+Collision avoidance, speed assistance, doorway support, path correction, safety zones, and transparent intervention.
 
-### Weeks 9–10 — Navigation baseline
+## Phase 4 — Autonomous Navigation
 
-- Map a simulated environment.
-- Localize and navigate to a selected destination.
-- Avoid static obstacles and replan around blockage.
-- Validate doorway and corridor behavior.
+Mapping, SLAM, localization, Nav2 or approved alternative, goal navigation, dynamic avoidance, and recovery.
 
-**Exit evidence:** repeatable supervised point-to-point navigation with zero collision in the baseline scenario set.
+## Phase 5 — AI Perception
 
-### Weeks 11–12 — Shared control and Sim 0.1
+People and doorway detection, scene understanding, uncertainty, semantic navigation research, and diverse evaluation.
 
-- Combine user direction with safety-filtered velocity control.
-- Add a moving-person crossing scenario.
-- Measure interventions, false stops, clearance, comfort, and latency.
-- Run complete regression suite and publish results.
-- Tag and document CAREC Sim 0.1.
+## Phase 6 — Hardware Prototype
 
-**Exit evidence:** a user can drive virtually while the independent safety layer rejects unsafe commands.
+Approved compute, sensors, motor interface, independent safety controller, power architecture, and unoccupied bench validation.
 
-## Weighted program score
+## Phase 7 — Hardware-in-the-Loop
 
-| Deliverable | Weight |
-|---|---:|
-| Reproducible contributor setup | 10% |
-| Digital wheelchair and sensors | 15% |
-| Safety kernel | 20% |
-| Scenario and metrics framework | 15% |
-| Shared control | 15% |
-| Supervised navigation | 10% |
-| Perception research | 5% |
-| Hardware-in-the-loop validation | 5% |
-| Controlled physical validation | 5% |
+Real controllers/sensors against simulated scenarios, timing, watchdog, fault, and interface evidence.
 
-See [docs/status/PROJECT_SCORECARD.md](docs/status/PROJECT_SCORECARD.md) for earned progress and evidence.
+## Phase 8 — Controlled Wheelchair Testing
 
-## Deferred until after Sim 0.1
+Owner-approved, unoccupied controlled testing followed only by separately authorized supervised user validation. Simulation results never substitute for these gates.
 
-- Purchase of new sensors or compute hardware.
-- Direct connection to occupied-wheelchair motor controls.
-- Outdoor or road navigation claims.
-- Unsupervised operation.
-- Requirement for paid cloud services or high-end GPUs.
-- Claims of compatibility with a physical wheelchair without model-specific validation.
+The recommended first milestone is [M0 — CAREC Simulation Foundation](docs/09-project-management/milestones.md). Earlier twelve-week planning is retained in git history and the [migration report](docs/documentation-migration-report.md); dates must be re-baselined by the maintainer.
