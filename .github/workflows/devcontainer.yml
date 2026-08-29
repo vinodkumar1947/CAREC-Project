@@ -1,0 +1,65 @@
+name: Dev Container Smoke Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.devcontainer/**'
+      - 'scripts/bootstrap.sh'
+      - '.github/workflows/devcontainer.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.devcontainer/**'
+      - 'scripts/bootstrap.sh'
+      - '.github/workflows/devcontainer.yml'
+      - 'docs/08-contributors/development-environment.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  devcontainer-smoke:
+    name: Build CAREC Dev Container and verify baseline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Build CAREC development image
+        run: |
+          docker build \
+            --file .devcontainer/Dockerfile \
+            --tag carec-devcontainer:ci \
+            .devcontainer
+
+      - name: Verify CAREC contributor environment
+        run: |
+          docker run --rm \
+            --volume "$GITHUB_WORKSPACE:/workspaces/CAREC-Project" \
+            --workdir /workspaces/CAREC-Project \
+            carec-devcontainer:ci \
+            bash -lc 'source /opt/ros/jazzy/setup.bash && ./scripts/bootstrap.sh --check'
+
+      - name: Verify ROS 2 Jazzy
+        run: |
+          docker run --rm \
+            carec-devcontainer:ci \
+            bash -lc 'source /opt/ros/jazzy/setup.bash && test "$ROS_DISTRO" = "jazzy" && ros2 --help >/dev/null'
+
+      - name: Verify required robotics packages are discoverable
+        run: |
+          docker run --rm \
+            carec-devcontainer:ci \
+            bash -lc 'source /opt/ros/jazzy/setup.bash && ros2 pkg prefix nav2_bringup >/dev/null && ros2 pkg prefix slam_toolbox >/dev/null && ros2 pkg prefix ros_gz_bridge >/dev/null'
+
+      - name: Run current portable contributor tests inside CAREC image
+        run: |
+          docker run --rm \
+            --volume "$GITHUB_WORKSPACE:/workspaces/CAREC-Project" \
+            --workdir /workspaces/CAREC-Project \
+            carec-devcontainer:ci \
+            bash -lc 'source /opt/ros/jazzy/setup.bash && python3 -m pytest tests/obstacle_test.py tests/unit -v'
