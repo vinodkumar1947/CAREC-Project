@@ -1,3 +1,0 @@
-[submodule "firmware/components/Seeed_Arduino_SSCMA"]
-	path = firmware/components/Seeed_Arduino_SSCMA
-	url = https://github.com/Seeed-Studio/Seeed_Arduino_SSCMA.git
