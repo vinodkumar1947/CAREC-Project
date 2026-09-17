@@ -6,7 +6,7 @@ This directory will contain the ROS 2 simulation-first autonomy stack. It curren
 
 Package scaffolding is intentionally blocked until [issue #17](https://github.com/vinodkumar1947/CAREC-Project/issues/17) approves the stable ROS interfaces and safety boundary. [Issue #20](https://github.com/vinodkumar1947/CAREC-Project/issues/20) then creates the workspace packages and CI build.
 
-Planned responsibilities are documented in the [autonomy architecture](../docs/architecture/AUTONOMY_ARCHITECTURE.md).
+Planned responsibilities are documented in the [system architecture](../docs/03-system-architecture/README.md).
 
 ## Contributor environment
 

@@ -35,9 +35,9 @@ jobs:
 
       - name: Run current unit tests
         run: |
-          pytest tests/unit -v \
-            --json-report \
-            --json-report-file=tests/results/ci_results.json
+          PYTHONPATH=. pytest tests/unit -v \
+           --json-report \
+           --json-report-file=tests/results/ci_results.json
 
       - name: Upload test results
         uses: actions/upload-artifact@v4

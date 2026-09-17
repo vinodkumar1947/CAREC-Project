@@ -19,4 +19,4 @@ ADRs record important, long-lived decisions without erasing alternatives. Copy [
 | [ADR-0007](ADR-0007-ai-inference-platform.md) | AI inference platform | Proposed |
 | [ADR-0008](ADR-0008-communication-architecture.md) | Communication architecture | Proposed |
 
-The preserved [`ADR-001`](../specifications/ADR-001-tf-module-ops-architecture.md) predates this numbering scheme and remains historical input; owner review should decide whether to supersede or renumber it.
+The earlier ADR numbering is preserved in repository history; the current ADR index uses four-digit identifiers.
