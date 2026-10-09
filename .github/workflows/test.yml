@@ -35,7 +35,8 @@ jobs:
 
       - name: Run current unit tests
         run: |
-          pytest tests/unit -v \
+          export PYTHONPATH="$GITHUB_WORKSPACE:$PYTHONPATH"
+          python -m pytest tests/unit -v \
             --json-report \
             --json-report-file=tests/results/ci_results.json
 
