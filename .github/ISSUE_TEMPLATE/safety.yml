@@ -5,9 +5,29 @@ labels: ["type:safety", "workstream:safety"]
 body:
   - type: markdown
     attributes: {value: "Do not publish exploitable vulnerabilities, personal data, or unsafe occupied-test instructions. Use SECURITY.md for private disclosure."}
+  - type: dropdown
+    id: status
+    attributes: {label: Status, options: [Ready, Blocked, Needs triage]}
+    validations: {required: true}
+  - type: dropdown
+    id: complexity
+    attributes: {label: Difficulty, options: [Good first issue, Beginner, Intermediate, Advanced]}
+    validations: {required: true}
+  - type: dropdown
+    id: hardware
+    attributes: {label: Hardware required, options: ["No", "Yes - owner/prototype hardware", "TBD"]}
+    validations: {required: true}
+  - type: textarea
+    id: prerequisites
+    attributes: {label: Prerequisites, description: "Setup, safety documents, decisions, skills, or previous work required. Write None if not applicable."}
+    validations: {required: true}
+  - type: textarea
+    id: dependencies
+    attributes: {label: Depends on, description: "Reference blocking issues/PRs/ADRs. Write None if unblocked."}
+    validations: {required: true}
   - type: textarea
     id: hazard
-    attributes: {label: Hazard}
+    attributes: {label: Hazard / Outcome to address}
     validations: {required: true}
   - type: textarea
     id: scenario
@@ -31,5 +51,9 @@ body:
     validations: {required: true}
   - type: textarea
     id: validation
-    attributes: {label: Validation approach}
+    attributes: {label: Acceptance criteria / validation evidence, description: "Define safe, measurable evidence required for closure."}
     validations: {required: true}
+  - type: markdown
+    attributes:
+      value: |
+        **Claiming:** Safety work requires maintainer/owner review before substantial implementation or testing.

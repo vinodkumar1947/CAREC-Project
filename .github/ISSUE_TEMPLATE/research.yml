@@ -3,9 +3,33 @@ description: Investigate a bounded question and produce evidence
 title: "[RESEARCH] "
 labels: ["type:research"]
 body:
+  - type: dropdown
+    id: status
+    attributes: {label: Status, options: [Ready, Blocked, Needs triage]}
+    validations: {required: true}
+  - type: dropdown
+    id: workstream
+    attributes: {label: Track, options: [Architecture, Simulation, ROS2, Navigation, Vision, AI/ML, Sensor Fusion, Firmware, Hardware, Mobile, Cloud, Safety, Testing, Documentation, DevEx, Project Management, Other]}
+    validations: {required: true}
+  - type: dropdown
+    id: complexity
+    attributes: {label: Difficulty, options: [Good first issue, Beginner, Intermediate, Advanced]}
+    validations: {required: true}
+  - type: dropdown
+    id: hardware
+    attributes: {label: Hardware required, options: ["No", "Yes - owner/prototype hardware", "TBD"]}
+    validations: {required: true}
+  - type: textarea
+    id: prerequisites
+    attributes: {label: Prerequisites, description: "Setup, skills, documents, decisions, or previous work required. Write None if not applicable."}
+    validations: {required: true}
+  - type: textarea
+    id: dependencies
+    attributes: {label: Depends on, description: "Reference blocking issues/PRs/ADRs. Write None if unblocked."}
+    validations: {required: true}
   - type: textarea
     id: question
-    attributes: {label: Question}
+    attributes: {label: Research question}
     validations: {required: true}
   - type: textarea
     id: background
@@ -20,8 +44,12 @@ body:
     attributes: {label: Expected output}
     validations: {required: true}
   - type: textarea
+    id: acceptance
+    attributes: {label: Acceptance criteria, description: "Define what evidence makes the research task complete.", placeholder: "- [ ] Sources recorded\n- [ ] Reproducible evidence provided\n- [ ] Recommendation tied to evidence"}
+    validations: {required: true}
+  - type: textarea
     id: recommendation
-    attributes: {label: Recommendation requested, description: "State the decision this research should inform."}
+    attributes: {label: Decision this research should inform}
     validations: {required: true}
   - type: textarea
     id: references

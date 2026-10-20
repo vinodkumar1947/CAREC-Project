@@ -3,9 +3,37 @@ description: Define a scoped engineering deliverable
 title: "[TASK] "
 labels: ["type:task"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        New contributors should choose work by status, prerequisites, and track — never by issue number.
+  - type: dropdown
+    id: status
+    attributes: {label: Status, options: [Ready, Blocked, Needs triage]}
+    validations: {required: true}
+  - type: dropdown
+    id: workstream
+    attributes: {label: Track, options: [Architecture, Simulation, ROS2, Navigation, Vision, AI/ML, Sensor Fusion, Firmware, Hardware, Mobile, Cloud, Safety, Testing, Documentation, DevEx, Project Management]}
+    validations: {required: true}
+  - type: dropdown
+    id: complexity
+    attributes: {label: Difficulty, options: [Good first issue, Beginner, Intermediate, Advanced]}
+    validations: {required: true}
+  - type: dropdown
+    id: hardware
+    attributes: {label: Hardware required, options: ["No", "Yes - owner/prototype hardware", "TBD"]}
+    validations: {required: true}
+  - type: textarea
+    id: prerequisites
+    attributes: {label: Prerequisites, description: "Setup, skills, documents, decisions, or previous work required. Write None if not applicable."}
+    validations: {required: true}
+  - type: textarea
+    id: dependencies
+    attributes: {label: Depends on, description: "Reference blocking issues/PRs/ADRs. Write None if unblocked."}
+    validations: {required: true}
   - type: textarea
     id: objective
-    attributes: {label: Objective, description: "State the observable outcome."}
+    attributes: {label: Outcome, description: "State the observable outcome."}
     validations: {required: true}
   - type: textarea
     id: background
@@ -17,20 +45,9 @@ body:
     validations: {required: true}
   - type: textarea
     id: acceptance
-    attributes: {label: Acceptance criteria, description: "Include exact testing instructions where possible."}
+    attributes: {label: Acceptance criteria, description: "State measurable completion evidence and exact test instructions where possible.", placeholder: "- [ ] ..."}
     validations: {required: true}
-  - type: textarea
-    id: dependencies
-    attributes: {label: Dependencies}
-  - type: dropdown
-    id: complexity
-    attributes: {label: Estimated complexity, options: [Good first issue, Beginner, Intermediate, Advanced]}
-    validations: {required: true}
-  - type: dropdown
-    id: hardware
-    attributes: {label: Required hardware, options: ["None", "Owner-only prototype", "TBD"]}
-    validations: {required: true}
-  - type: dropdown
-    id: workstream
-    attributes: {label: Workstream, options: [Architecture, Simulation, ROS2, Navigation, Vision, AI/ML, Sensor Fusion, Firmware, Hardware, Mobile, Cloud, Safety, Testing, Documentation]}
-    validations: {required: true}
+  - type: markdown
+    attributes:
+      value: |
+        **Claiming:** If this issue is Ready and unassigned, comment that you would like to claim it. Wait for maintainer confirmation before substantial implementation.

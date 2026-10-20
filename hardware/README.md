@@ -1,49 +1,27 @@
 # CAREC Hardware Boundary
 
-> CAREC Sim requires no physical hardware. This directory records the single owner-controlled prototype and possible future integration requirements. It is not a shopping guide or deployment authorization.
+> The current CAREC milestone is simulation-first. No physical wheelchair hardware is required for contributor work.
 
-## Current prototype
+## Current scope
 
-The repository retains experimental documentation for one SenseCAP Watcher W1-A obstacle-warning device and a removable camera-mount concept. This hardware does not provide autonomous navigation or universal wheelchair compatibility.
+The active project does **not** use ESP-IDF, ESP32, SenseCAP Watcher, or any device-specific embedded prototype.
 
-No contributor is expected to buy, borrow, receive, mount, or flash:
+Current engineering targets a platform-agnostic ROS 2 autonomy stack and simulated wheelchair. Physical integration is deferred until the simulation, safety, navigation, and interface milestones have reproducible evidence.
 
-- a wheelchair;
-- a camera or LiDAR;
-- an embedded controller;
-- a motor interface;
-- a GPU; or
-- prototype mounting hardware.
+## Future physical integration rules
 
-## Compatibility rule
+CAREC separates:
 
-There is no universal powered-wheelchair electrical or mechanical interface. CAREC separates:
-
-1. a platform-agnostic autonomy core;
+1. platform-agnostic autonomy and safety logic;
 2. configurable simulation profiles; and
-3. individually reviewed and validated physical adapters.
+3. future individually reviewed physical platform adapters.
 
-A simulation profile does not certify a physical wheelchair. Manual wheelchairs require a separate powered drive system.
+A simulation profile does not certify a physical wheelchair. Future hardware adapters must never receive raw planner, AI, or user commands; they may consume only the safety-approved motion interface.
 
-## Owner-only physical work
+## Hardware selection policy
 
-Physical experiments, when authorized later, must progress through:
+Do not purchase or standardize sensors, embedded controllers, motor interfaces, or compute hardware during CAREC Sim 0.1 solely to begin development. Hardware selection should follow measured simulation requirements such as sensor range, field of view, latency, compute load, braking assumptions, power, and interface constraints.
 
-1. interface review and hazard analysis;
-2. simulation regression evidence;
-3. hardware-in-the-loop bench testing;
-4. wheels-raised testing;
-5. tethered, unoccupied, low-speed testing;
-6. supervised evaluation under an approved protocol.
+Any future hardware selection must be introduced through a reviewed requirement and ADR.
 
-Community code must never communicate directly with wheelchair motors. The future `hardware_bridge/` remains disabled by default and accepts commands only from the independent safety supervisor.
-
-## Purchasing policy
-
-Do not purchase additional hardware during the contributor-foundation or digital-wheelchair milestones. Hardware selection begins only after simulation has measured required range, field of view, latency, compute, power, braking behavior, and interface needs.
-
-The legacy [bill of materials](BOM.md), [hardware status](../docs/specifications/HARDWARE_STATUS_UPDATE.md), and [mounting guide](../docs/guides/mounting_guide.md) are retained for provenance; their prices and deployment claims are not current commitments.
-
-## Datasheets
-
-See [datasheets/README.md](datasheets/README.md) for legacy prototype references. Future components must be added only with a documented requirement and architecture decision.
+For current work, start with the [simulation documentation](../docs/04-simulation/README.md), [ROS 2 engineering guide](../docs/05-engineering/ros2.md), and [GitHub Issues](https://github.com/vinodkumar1947/CAREC-Project/issues).

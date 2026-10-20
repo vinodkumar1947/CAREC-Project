@@ -1,2 +1,0 @@
-# Never commit nvsfactory backups — they contain device-unique factory data
-*.bin

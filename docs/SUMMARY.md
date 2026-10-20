@@ -30,14 +30,13 @@
 * [High-level Architecture](03-system-architecture/high-level-architecture.md)
 * [Software Architecture](03-system-architecture/software-architecture.md)
 * [ROS 2 Architecture](03-system-architecture/ros2-architecture.md)
-* [Hardware Architecture](03-system-architecture/hardware-architecture.md)
 * [Sensor Architecture](03-system-architecture/sensor-architecture.md)
 * [AI Architecture](03-system-architecture/ai-architecture.md)
 * [Interfaces](03-system-architecture/interfaces.md)
 * [Data Flow](03-system-architecture/data-flow.md)
 * [Communications](03-system-architecture/communications.md)
 
-## Simulation
+## Simulation and Autonomous Mobility
 
 * [Simulation Overview](04-simulation/README.md)
 * [Simulation Strategy](04-simulation/simulation-strategy.md)
@@ -55,11 +54,6 @@
 * [Computer Vision](05-engineering/computer-vision.md)
 * [AI and ML](05-engineering/ai-ml.md)
 * [Sensor Fusion](05-engineering/sensor-fusion.md)
-* [Firmware](05-engineering/firmware.md)
-* [Embedded Linux](05-engineering/embedded-linux.md)
-* [Hardware](05-engineering/hardware.md)
-* [Mobile App](05-engineering/mobile-app.md)
-* [Cloud](05-engineering/cloud.md)
 
 ## Safety
 
@@ -79,7 +73,6 @@
 * [Integration Testing](07-testing/integration-testing.md)
 * [Simulation Testing](07-testing/simulation-testing.md)
 * [System Testing](07-testing/system-testing.md)
-* [Hardware Testing](07-testing/hardware-testing.md)
 * [Acceptance Testing](07-testing/acceptance-testing.md)
 
 ## Contributors
@@ -113,8 +106,7 @@
 * [Commercial Wheelchairs](12-research/commercial-wheelchairs.md)
 * [Autonomous Mobility Research](12-research/autonomous-mobility.md)
 
-## Evidence and Records
+## Evidence and Status
 
 * [Requirements Traceability](traceability.md)
-* [Documentation Migration Report](documentation-migration-report.md)
 * [Project Scorecard](status/PROJECT_SCORECARD.md)

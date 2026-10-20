@@ -4,9 +4,10 @@ on:
   push:
     branches: [main]
     paths:
+      - 'autonomy_ws/**'
+      - 'simulation/**'
+      - 'software/**'
       - 'tests/**'
-      - 'firmware/main/**'
-      - 'firmware/config/**'
   pull_request:
     branches: [main]
 
@@ -15,7 +16,7 @@ permissions:
 
 jobs:
   test:
-    name: Python Tests
+    name: Simulation and autonomy tests
     runs-on: ubuntu-latest
 
     steps:
@@ -32,27 +33,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest pytest-json-report
 
-      - name: Run obstacle tests
+      - name: Run current unit tests
         run: |
-          pytest tests/obstacle_test.py tests/unit -v \
+          pytest tests/unit -v \
             --json-report \
             --json-report-file=tests/results/ci_results.json
-
-      - name: Compile and run portable safety decision test
-        run: |
-          g++ -std=c++17 -Wall -Wextra -Werror \
-            -Ifirmware/main \
-            tests/cpp/safety_decision_test.cpp \
-            -o /tmp/carec_safety_decision_test
-          /tmp/carec_safety_decision_test
-
-      - name: Compile and run portable health supervisor test
-        run: |
-          g++ -std=c++17 -Wall -Wextra -Werror \
-            -Ifirmware/main \
-            tests/cpp/health_supervisor_test.cpp \
-            -o /tmp/carec_health_supervisor_test
-          /tmp/carec_health_supervisor_test
 
       - name: Upload test results
         uses: actions/upload-artifact@v4

@@ -3,6 +3,30 @@ description: Report reproducible incorrect behavior
 title: "[BUG] "
 labels: ["type:bug"]
 body:
+  - type: dropdown
+    id: status
+    attributes: {label: Status, options: [Ready, Blocked, Needs triage]}
+    validations: {required: true}
+  - type: dropdown
+    id: workstream
+    attributes: {label: Track, options: [Architecture, Simulation, ROS2, Navigation, Vision, AI/ML, Sensor Fusion, Firmware, Hardware, Mobile, Cloud, Safety, Testing, Documentation, DevEx, Project Management, Other]}
+    validations: {required: true}
+  - type: dropdown
+    id: complexity
+    attributes: {label: Difficulty, options: [Good first issue, Beginner, Intermediate, Advanced]}
+    validations: {required: true}
+  - type: dropdown
+    id: hardware
+    attributes: {label: Hardware required, options: ["No", "Yes - owner/prototype hardware", "TBD"]}
+    validations: {required: true}
+  - type: textarea
+    id: prerequisites
+    attributes: {label: Prerequisites, description: "Setup, skills, documents, decisions, or previous work required. Write None if not applicable."}
+    validations: {required: true}
+  - type: textarea
+    id: dependencies
+    attributes: {label: Depends on, description: "Reference blocking issues/PRs/ADRs. Write None if unblocked."}
+    validations: {required: true}
   - type: textarea
     id: description
     attributes: {label: Description, description: "What is wrong? Do not include secrets or personal data."}
@@ -23,13 +47,14 @@ body:
     id: environment
     attributes: {label: Environment, description: "Commit, OS, runtime, simulator/hardware, configuration."}
     validations: {required: true}
-  - type: textarea
-    id: logs
-    attributes: {label: Logs, render: shell}
-  - type: textarea
-    id: screenshots
-    attributes: {label: Screenshots}
   - type: dropdown
     id: severity
     attributes: {label: Severity, options: ["P0 - immediate safety/release risk", "P1 - major", "P2 - normal", "P3 - minor", "Unknown - needs triage"]}
     validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Acceptance criteria, description: "What evidence proves this bug is fixed?", placeholder: "- [ ] Reproduction no longer fails\n- [ ] Regression test added"}
+    validations: {required: true}
+  - type: textarea
+    id: logs
+    attributes: {label: Logs, render: shell}

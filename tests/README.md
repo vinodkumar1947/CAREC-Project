@@ -1,63 +1,30 @@
 # CAREC Tests
 
-The current tests protect the retained firmware decision logic while the ROS 2 scenario framework is being designed. They are not evidence of physical wheelchair safety.
+The active test suite supports the simulation-first ROS 2 autonomy direction. Legacy embedded-firmware tests have been removed from the current project tree.
 
 ## Current structure
 
 ```text
 tests/
-├── cpp/
-│   └── safety_decision_test.cpp  portable production C++ safety boundary
-├── obstacle_test.py              legacy Python behavior and fixture tests
-├── conftest.py                   shared Python constants and helpers
-├── fixtures/
-│   └── sample_detections.json
-├── integration/                  reserved for future integration tests
-├── unit/                         reserved for additional unit tests
-└── results/                      generated output, mostly gitignored
+├── integration/                  integration and launch tests as ROS 2 packages arrive
+├── unit/                         autonomy and simulation unit tests
+└── results/                      generated evidence, mostly gitignored
 ```
 
-## Run the portable C++ safety test
+## Run current tests
 
 ```bash
-g++ -std=c++17 -Wall -Wextra -Werror \
-  -Ifirmware/main \
-  tests/cpp/safety_decision_test.cpp \
-  -o /tmp/carec_safety_decision_test
-/tmp/carec_safety_decision_test
+python3 -m pytest tests/unit -v
 ```
 
-This directly compiles `firmware/main/safety_decision.h` and verifies zone boundaries plus fail-safe behavior for unavailable or failed detection.
+As the ROS 2 workspace is scaffolded, CI will add package builds, launch smoke tests, interface contract tests, deterministic scenarios, and machine-readable evaluation output.
 
-## Run the Python tests
+## Test principles
 
-Use an isolated environment:
+- Simulation success is not physical-wheelchair safety evidence.
+- Safety behavior must be deterministic and independently testable.
+- Fixed seeds should be used where practical.
+- Scenario evidence should include collisions, minimum clearance, stopping behavior, intervention reason, latency, and final state.
+- Future physical testing requires a separate reviewed safety process.
 
-```bash
-python3 -m venv .venv
-. .venv/bin/activate
-python -m pip install pytest pytest-json-report
-pytest tests/obstacle_test.py -v
-```
-
-The Python suite covers legacy distance heuristics, zone boundaries, beep timing, fixtures, event format, and mirrored failure-state expectations. It does not replace the portable C++ test.
-
-## CI
-
-[`.github/workflows/test.yml`](../.github/workflows/test.yml) runs both suites when firmware or test inputs change. Project-wide repository checks are defined in [`.github/workflows/project-quality.yml`](../.github/workflows/project-quality.yml).
-
-## Adding tests
-
-Every behavior change should include the lowest-level authoritative test possible:
-
-1. portable C++ test for runtime safety decisions;
-2. ROS package unit test for autonomy components;
-3. launch or integration test for interfaces;
-4. deterministic scenario for system behavior; and
-5. machine-readable metrics for milestone evidence.
-
-Future simulation tests must use fixed seeds where practical and report collisions, minimum clearance, stopping distance, intervention reason, latency, and final state.
-
-## Known gap
-
-Most existing Python tests mirror portions of firmware behavior instead of executing embedded code. New safety logic should be extracted into portable C++ modules and tested directly.
+See [Testing Strategy](../docs/07-testing/testing-strategy.md) and [Simulation Testing](../docs/07-testing/simulation-testing.md).
