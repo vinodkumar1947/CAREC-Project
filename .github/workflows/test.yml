@@ -35,7 +35,7 @@ jobs:
 
       - name: Run current unit tests
         run: |
-          pytest tests/unit -v \
+          python -m pytest tests/unit -v \
             --json-report \
             --json-report-file=tests/results/ci_results.json
 
