@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TRACE = (ROOT / "docs/traceability.md").read_text(encoding="utf-8")
-HAZARDS = (ROOT / "docs/safety/failure_modes.md").read_text(encoding="utf-8")
+HAZARDS = (ROOT / "docs/06-safety/risk-register.md").read_text(encoding="utf-8")
 TEST_TEXT = "\n".join(
     path.read_text(encoding="utf-8")
     for path in sorted((ROOT / "tests").rglob("*"))
