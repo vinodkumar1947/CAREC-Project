@@ -17,8 +17,7 @@ RUN apt-get update \
        ros-jazzy-ros-gz \
        ros-jazzy-slam-toolbox \
     && rm -rf /var/lib/apt/lists/* \
-    && groupadd --gid ${USER_GID} ${USERNAME} \
-    && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME}
-
+    && groupmod --new-name ${USERNAME} ubuntu \
+    && usermod --login ${USERNAME} --home /home/${USERNAME} --move-home ubuntu
 USER ${USERNAME}
 WORKDIR /workspaces/CAREC-Project
