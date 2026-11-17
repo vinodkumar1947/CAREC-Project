@@ -17,6 +17,8 @@ Scope: branch `feature/CARE-053`, accessibility review starter and onboarding ch
 | Project status: `python3 scripts/validate_status.py` | Passed; autonomy progress left unchanged |
 | Whitespace: `git diff --check` | Passed |
 | Browser: desktop Chrome preview | Sample loaded; confirm/dismiss produced 2/3 reviewed; added manual timestamped note; export control reported success |
+| GitHub Actions pilot contract job | Passed on the first PR commit |
+| Original unit-test workflow | Reproduced a missing `autonomy_ws` import with the `pytest` executable; changed CI to the documented `python -m pytest` invocation |
 | Safety traceability | Pre-existing failure: missing `docs/safety/failure_modes.md`; [#59](https://github.com/vinodkumar1947/CAREC-Project/issues/59) tracks canonical mappings/evidence repair |
 
 ## Not yet verified
