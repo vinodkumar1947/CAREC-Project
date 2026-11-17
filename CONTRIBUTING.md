@@ -8,7 +8,7 @@ For the software-only contributor pilot, follow [Start Here](docs/08-contributor
 
 1. Read the [vision](docs/01-project-overview/vision.md), [safety philosophy](docs/06-safety/safety-philosophy.md), and [getting-started guide](docs/08-contributors/getting-started.md).
 2. Run `./scripts/bootstrap.sh --check` and the tests named in your issue.
-3. Select an assigned or `status:ready` issue; ask before starting unscoped work.
+3. Select an assigned or `ready` issue; ask before starting unscoped work.
 4. Create a short-lived branch: `feature/CARE-###`, `fix/CARE-###`, `research/CARE-###`, `docs/CARE-###`, or `simulation/CARE-###`.
 5. Open a focused pull request. Do not directly commit feature work to `main`.
 

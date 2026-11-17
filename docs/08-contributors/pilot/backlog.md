@@ -2,7 +2,7 @@
 
 Parent: [Contributor Pilot #53](https://github.com/vinodkumar1947/CAREC-Project/issues/53).
 
-The five implementation tasks below are **blocked until the pilot PR is merged**. Each issue contains starting files, skills, scope, acceptance criteria, verification, submission evidence, and a review route. A maintainer checks dependencies before marking a task `status:ready`; this document does not override live issue state.
+The five implementation tasks below are **blocked until the pilot PR is merged**. Each issue contains starting files, skills, scope, acceptance criteria, verification, submission evidence, and a review route. A maintainer checks dependencies before marking a task `ready`; this document does not override live issue state.
 
 | Task | Track | Difficulty | Dependency |
 |---|---|---|---|

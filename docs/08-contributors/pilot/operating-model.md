@@ -18,7 +18,7 @@ Until a technical maintainer accepts the role, engineering escalation still reac
 
 1. Product owner describes the user, trigger, desired behavior, non-goals, priority, and acceptance examples.
 2. Technical maintainer identifies interfaces, starting files, dependencies, verification, and safety class.
-3. A task becomes `status:ready` only when its dependencies are merged, a review route is named, and acceptance can be checked.
+3. A task becomes `ready` only when its dependencies are merged, a review route is named, and acceptance can be checked.
 4. Contributor claims and implements the task publicly. For ready S0/S1 pilot tasks, no private introduction or repeated owner approval is required.
 5. CI checks evidence; an independent reviewer reviews the PR. Unanswered design questions stay in the issue and become documentation when resolved.
 6. Maintainer merges. Official release designation and physical integration remain with the project owner under existing governance.
