@@ -16,7 +16,7 @@ if ((${#missing[@]})); then
 fi
 
 if [[ "${1:-}" == "--check" ]]; then
-  echo "CAREC contributor environment is ready."
+  echo "Git and Python found; this is a prerequisite check, not full stack validation."
   python3 --version
   if command -v ros2 >/dev/null 2>&1; then
     ros2 --help >/dev/null

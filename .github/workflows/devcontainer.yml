@@ -62,4 +62,4 @@ jobs:
             --volume "$GITHUB_WORKSPACE:/workspaces/CAREC-Project" \
             --workdir /workspaces/CAREC-Project \
             carec-devcontainer:ci \
-            bash -lc 'source /opt/ros/jazzy/setup.bash && python3 -m pytest tests/obstacle_test.py tests/unit -v'
+            bash -lc 'source /opt/ros/jazzy/setup.bash && python3 -m pytest tests/unit -v'

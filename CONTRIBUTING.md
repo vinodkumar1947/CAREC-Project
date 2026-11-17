@@ -4,9 +4,11 @@ CAREC welcomes simulation, robotics, navigation, vision, AI/ML, sensor fusion, f
 
 ## Start here
 
+For the software-only contributor pilot, follow [Start Here](docs/08-contributors/start-here.md). After this policy is merged, ready, unassigned S0/S1 pilot tasks may be started after a public claim without waiting for a private introduction. Dependencies must be merged first; S2/S3 work retains existing review requirements. See the [operating model](docs/08-contributors/pilot/operating-model.md).
+
 1. Read the [vision](docs/01-project-overview/vision.md), [safety philosophy](docs/06-safety/safety-philosophy.md), and [getting-started guide](docs/08-contributors/getting-started.md).
 2. Run `./scripts/bootstrap.sh --check` and the tests named in your issue.
-3. Select an assigned or `status:ready` issue; ask before starting unscoped work.
+3. Select an assigned or `ready` issue; ask before starting unscoped work.
 4. Create a short-lived branch: `feature/CARE-###`, `fix/CARE-###`, `research/CARE-###`, `docs/CARE-###`, or `simulation/CARE-###`.
 5. Open a focused pull request. Do not directly commit feature work to `main`.
 
