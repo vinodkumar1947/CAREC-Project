@@ -16,6 +16,8 @@ This repository is the engineering source of truth for the published CAREC GitBo
 
 ## Start Here
 
+**New contributor? [Begin with the software-only contributor pilot](08-contributors/start-here.md).** Try the sample, select your track, and find a scoped task. This separate review workflow does not replace the simulation program.
+
 - [Vision](01-project-overview/vision.md), [goals](01-project-overview/goals.md), and [non-goals](01-project-overview/non-goals.md)
 - [Getting started](08-contributors/getting-started.md) and [first task](08-contributors/first-task.md)
 - [Roadmap](../ROADMAP.md) and [milestones](09-project-management/milestones.md)

@@ -44,10 +44,18 @@ body:
     attributes: {label: Deliverables, placeholder: "- [ ] ..."}
     validations: {required: true}
   - type: textarea
+    id: starting_point
+    attributes: {label: Starting files and interfaces, description: "Name existing paths, contracts, and sample inputs."}
+    validations: {required: true}
+  - type: textarea
+    id: verification
+    attributes: {label: Verification and review route, description: "Exact commands/manual checks, expected results, evidence to attach, and who routes review."}
+    validations: {required: true}
+  - type: textarea
     id: acceptance
     attributes: {label: Acceptance criteria, description: "State measurable completion evidence and exact test instructions where possible.", placeholder: "- [ ] ..."}
     validations: {required: true}
   - type: markdown
     attributes:
       value: |
-        **Claiming:** If this issue is Ready and unassigned, comment that you would like to claim it. Wait for maintainer confirmation before substantial implementation.
+        **Claiming:** If this issue is Ready and unassigned, comment that you would like to claim it. For ready, unassigned S0/S1 contributor-pilot tasks with merged dependencies, a public claim is sufficient to start. Other work retains maintainer confirmation.

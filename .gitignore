@@ -54,3 +54,6 @@ hardware/photos/*.png
 hardware/datasheets/*.pdf
 assets/audio/*.wav
 assets/audio/*.mp3
+
+# Local contributor environments
+.venv/

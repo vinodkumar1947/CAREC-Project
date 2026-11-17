@@ -1,6 +1,7 @@
 # Summary
 
 * [Documentation Home](README.md)
+* [Start Here — Contributor Pilot](08-contributors/start-here.md)
 
 ## Project Overview
 
@@ -77,6 +78,10 @@
 
 ## Contributors
 
+* [Pilot Backlog](08-contributors/pilot/backlog.md)
+* [Pilot Operating Model](08-contributors/pilot/operating-model.md)
+* [Newcomer Validation](08-contributors/pilot/newcomer-validation.md)
+* [Pilot Verification](08-contributors/pilot/verification.md)
 * [Getting Started](08-contributors/getting-started.md)
 * [First Task](08-contributors/first-task.md)
 * [Development Environment](08-contributors/development-environment.md)

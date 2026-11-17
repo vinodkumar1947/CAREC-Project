@@ -8,6 +8,10 @@ CAREC develops transparent, testable technology for safer and more independent p
 
 > **Current phase: CAREC Sim foundation.** CAREC is not a medical device, is not certified for clinical use, and does not currently provide validated autonomous wheelchair operation. Simulation results are not evidence of physical-wheelchair safety.
 
+## Contributor pilot — no hardware required
+
+[Start Here](docs/08-contributors/start-here.md) to try the browser-local accessibility review pilot, choose a task, and follow the contribution workflow. Sample findings are authored examples; automatic AI detection is not implemented. The pilot is a separate contribution entry point and does not replace the ROS 2 autonomy program. Status: proposed in [#53](https://github.com/vinodkumar1947/CAREC-Project/issues/53), pending independent review and two newcomer walkthroughs.
+
 ## Current architecture direction
 
 ```mermaid
@@ -48,13 +52,13 @@ Execution is tracked in GitHub Issues. Architecture decisions are recorded as AD
 ## Quick start
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/vinodkumar1947/CAREC-Project.git
 cd CAREC-Project
-./scripts/bootstrap.sh --check
-python3 -m pytest tests/unit -v
+python3 scripts/contributor_check.py --track pilot
+python3 -m http.server 8000 --bind 127.0.0.1 --directory pilot
 ```
 
-Then read [Getting Started](docs/08-contributors/getting-started.md), select a ready GitHub issue, create a branch, and submit a pull request. Do not commit feature work directly to `main`.
+Open `http://127.0.0.1:8000`. While pilot #53 is unmerged, clone with `--branch feature/CARE-053`. Alternatively download that branch as ZIP and open `pilot/index.html`. Read [Start Here](docs/08-contributors/start-here.md) for expected output, tracks, Windows commands, tasks, and troubleshooting. Python/ROS development has separate setup instructions. Submit feature work by pull request; do not commit it directly to `main`.
 
 ## Repository navigation
 

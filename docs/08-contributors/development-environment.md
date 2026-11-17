@@ -42,7 +42,7 @@ In VS Code choose **Dev Containers: Reopen in Container**. The repository's `.de
 ./scripts/bootstrap.sh --check
 ```
 
-A successful environment reports that the CAREC contributor environment is ready and that ROS 2 Jazzy is available.
+The prerequisite check reports Git/Python availability and whether ROS is discoverable. It does not validate the simulator. Use the explicit track checks in [Getting Started](getting-started.md) and attach actual test evidence.
 
 > The current container is an early project baseline. Gazebo GUI and GPU acceleration must be validated per host before CAREC promises identical graphical behavior across all platforms. Headless builds and automated tests should remain the portable baseline.
 
@@ -147,7 +147,7 @@ Inside the CAREC Dev Container run:
 
 ```bash
 ./scripts/bootstrap.sh --check
-python3 -m pytest tests/obstacle_test.py tests/unit -v
+python3 -m pytest tests/unit -v
 ```
 
 Before a platform is advertised as fully supported for simulation, CAREC should also verify its standard headless simulator smoke test and record the result in CI or the platform-support documentation.

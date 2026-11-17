@@ -1,0 +1,23 @@
+name: Contributor Pilot
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths: ['pilot/**', 'tests/pilot/**', 'scripts/contributor_check.py', '.github/workflows/pilot.yml']
+permissions:
+  contents: read
+jobs:
+  pilot-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/contributor_check.py --track pilot
+      - run: node --check pilot/app.js
+      - run: node --check pilot/core.js

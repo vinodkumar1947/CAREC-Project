@@ -1,0 +1,3 @@
+# Portable Python reference tests; ROS dependencies remain in the Dev Container.
+pytest==8.3.5
+pytest-json-report==1.5.0

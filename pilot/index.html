@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>CAREC · Accessibility review pilot</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="core.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to review workspace</a>
+<header><a class="brand" href="https://github.com/vinodkumar1947/CAREC-Project">CAREC<span>Open accessibility engineering</span></a><nav aria-label="Project"><a href="https://github.com/vinodkumar1947/CAREC-Project/blob/feature/CARE-053/docs/08-contributors/start-here.md">Start contributing ↗</a></nav></header>
+<main>
+  <section class="intro"><p class="eyebrow">SOFTWARE-ONLY · CONTRIBUTOR PILOT 0.1</p><h1>Make access barriers<br>easier to review.</h1><p>Explore an illustrated walkthrough, review observations, or annotate your own video. Everything you review stays in this browser tab until you export it.</p></section>
+  <aside class="notice"><strong>A working foundation for contributors.</strong> Sample findings are authored examples. This pilot has no automatic AI detection and does not determine whether a route is safe or accessible.</aside>
+  <div class="toolbar"><button id="sample" type="button">Load illustrated sample</button><label class="file-button" for="video-file">Choose local video<input id="video-file" type="file" accept="video/*"></label><button id="export" type="button">Export JSON report</button><button id="print" type="button">Print / save PDF</button></div>
+  <p id="message" role="status" aria-live="polite">Sample loaded. Select an observation to review it.</p>
+  <section id="workspace" tabindex="-1" class="workspace" aria-label="Accessibility review workspace">
+    <div class="preview-panel"><div class="panel-heading"><h2 id="source-name">Illustrated hallway walkthrough</h2><span id="mode" class="tag">AUTHORED SAMPLE</span></div>
+      <div id="illustration" class="scene">
+        <svg viewBox="0 0 760 440" role="img" aria-labelledby="scene-title scene-desc"><title id="scene-title">Illustrated hallway with potential access barriers</title><desc id="scene-desc">A chair partly obstructs a hallway, a doorway needs a width check, and a floor transition needs inspection. This drawing contains no measured geometry.</desc><path d="M0 0H760V440H0Z" fill="#e2e9e8"/><path d="M0 440L285 190H475L760 440Z" fill="#bacbc5"/><path d="M0 0L285 100V190L0 440Z" fill="#f3f5f1"/><path d="M760 0L475 100V190L760 440Z" fill="#d2ded8"/><path d="M285 100H475V190H285Z" fill="#bdccc5"/><path d="M325 88H430V190H325Z" fill="#477064"/><path d="M340 105H415V190H340Z" fill="#91aaa0"/><path d="M170 250H280V285H170Z M180 285V350H194V285Z M254 285V340H268V285Z M170 170H185V250H170Z M185 170H280V235H185Z" fill="#677b72"/><path d="M230 385L578 385" stroke="#6e8176" stroke-width="12"/><rect x="156" y="155" width="138" height="207" rx="12" fill="none" stroke="#b25a28" stroke-width="3" stroke-dasharray="8 5"/><circle cx="155" cy="150" r="19" fill="#b25a28"/><text x="155" y="157" text-anchor="middle" fill="white" font-size="20">1</text><circle cx="438" cy="92" r="19" fill="#b25a28"/><text x="438" y="99" text-anchor="middle" fill="white" font-size="20">2</text><circle cx="590" cy="381" r="19" fill="#b25a28"/><text x="590" y="388" text-anchor="middle" fill="white" font-size="20">3</text></svg>
+        <p>Illustration only · no real footage or distance measurements</p>
+      </div>
+      <video id="video" controls preload="metadata" hidden aria-label="Local video for manual review"></video>
+      <p id="preview-note">The sample timestamps describe a hypothetical 15-second walkthrough.</p>
+      <form id="observation-form"><h3>Add an observation</h3><p id="annotation-help">For local video, pause at the relevant frame, then add a note. Notes are not saved automatically.</p><div class="fields"><label>Timestamp (seconds)<input id="timestamp" type="number" min="0" step="0.1" value="0" required></label><label class="note-field">Observation<input id="description" type="text" maxlength="500" placeholder="Describe what needs human review" required></label></div><button type="submit">Add observation</button></form>
+    </div>
+    <aside class="findings-panel"><div class="panel-heading"><h2>Review timeline</h2><span id="count" class="tag">0 / 3 reviewed</span></div><p class="muted">Confirm an observation or dismiss it. Neither action certifies accessibility.</p><div id="findings"></div></aside>
+  </section>
+  <section class="contribute"><div><p class="eyebrow">BUILD WITH US</p><h2>Your next contribution starts here.</h2><p>Improve exports, accessibility, scenarios, and eventually model evaluation. No wheelchair hardware required.</p></div><a class="primary-link" href="https://github.com/vinodkumar1947/CAREC-Project/issues/53">Explore the pilot backlog ↗</a></section>
+</main>
+<footer>CAREC · Open source under MIT · No accounts, uploads, or paid APIs. Exported reports may contain your video filename and notes; review them before sharing.</footer>
+</body></html>
