@@ -5,6 +5,7 @@ Owner: Product Workstream
 Last Updated: 2026-08-23
 Related Issues: TBD
 Related ADRs: TBD
+Canonical status: [Project scorecard](../status/PROJECT_SCORECARD.md)
 
 Requirements use stable identifiers, observable language, and links to hazards and verification evidence. `TBD` values must be resolved before the affected capability advances beyond simulation.
 

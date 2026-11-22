@@ -6,5 +6,61 @@
   "autonomy_build": "dependency-free-reference-model",
   "simulation_regression": "configured-reference-model",
   "safety_scenarios": 6,
-  "latest_release": null
+  "latest_release": null,
+  "progress": [
+    {
+      "deliverable": "Reproducible contributor setup",
+      "weight": 10,
+      "earned": 3,
+      "evidence": "Container specified; full clean build still pending"
+    },
+    {
+      "deliverable": "Digital wheelchair and sensors",
+      "weight": 15,
+      "earned": 0,
+      "evidence": "Not implemented"
+    },
+    {
+      "deliverable": "Safety kernel",
+      "weight": 20,
+      "earned": 1,
+      "evidence": "Dependency-free executable reference contract and fault tests"
+    },
+    {
+      "deliverable": "Scenario and metrics framework",
+      "weight": 15,
+      "earned": 1,
+      "evidence": "Six baseline scenario IDs and CI regression; metrics/reporting pending"
+    },
+    {
+      "deliverable": "Shared control",
+      "weight": 15,
+      "earned": 0,
+      "evidence": "Not implemented"
+    },
+    {
+      "deliverable": "Supervised navigation",
+      "weight": 10,
+      "earned": 0,
+      "evidence": "Not implemented"
+    },
+    {
+      "deliverable": "Perception research",
+      "weight": 5,
+      "earned": 0,
+      "evidence": "New benchmark not established"
+    },
+    {
+      "deliverable": "Hardware-in-the-loop validation",
+      "weight": 5,
+      "earned": 0,
+      "evidence": "Deferred"
+    },
+    {
+      "deliverable": "Controlled physical validation",
+      "weight": 5,
+      "earned": 0,
+      "evidence": "Deferred"
+    }
+  ]
 }

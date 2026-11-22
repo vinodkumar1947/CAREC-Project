@@ -19,4 +19,6 @@ ADRs record important, long-lived decisions without erasing alternatives. Copy [
 | [ADR-0007](ADR-0007-ai-inference-platform.md) | AI inference platform | Proposed |
 | [ADR-0008](ADR-0008-communication-architecture.md) | Communication architecture | Proposed |
 
-Earlier decision records that predate this numbering scheme remain available in Git history. Their disposition is recorded through the current ADR process.
+The earlier ADR-001 is referenced as historical input, but its original file is
+not present in this checkout. The available decision record is
+[ADR-0008](ADR-0008-communication-architecture.md).

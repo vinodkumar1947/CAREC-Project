@@ -1,10 +1,12 @@
 # Project Scorecard
 
-**Status date:** August 22, 2026
+**Status date:** 2026-08-22
 
-**Current milestone:** Reference safety foundation
+**Current milestone:** Reference Safety Foundation
 
 **Overall simulation-autonomy program:** 5% earned
+
+This scorecard is generated from `evaluation/status.json` and checked-in test and scenario evidence.
 
 The existing firmware prototype is tracked separately because it does not satisfy the new simulation-autonomy milestones.
 
@@ -22,18 +24,30 @@ The existing firmware prototype is tracked separately because it does not satisf
 | Hardware-in-the-loop validation | 5% | 0% | Deferred |
 | Controlled physical validation | 5% | 0% | Deferred |
 
-## Repository evidence
+## Test state
 
-| Signal | Current state |
-|---|---|
-| Autonomy build | Dependency-free reference model; ROS 2 not yet configured |
-| Simulation regression | Reference safety regression configured in CI |
-| Safety scenarios | 6 baseline fault/behavior scenarios |
-| Open safety blockers | ROS safety node, collision geometry, physical safety controller and adapter validation |
-| Latest release | No simulation-first release |
+- **Simulation regression:** `configured-reference-model`
+- **Checked-in test files:** 1
+- **Test functions discovered:** 6
+- **Execution result:** A passing CI result is not stored in the checked-in test evidence; consult the latest CI run.
 
-## Dashboard foundation
+## Safety scenarios
 
-The machine-readable source is [`evaluation/status.json`](../../evaluation/status.json), and CI validates its schema. Requirements, hazards, tests and scenario references are also checked by `scripts/validate_traceability.py`. Automatic metric collection and a GitHub Pages presentation remain planned work. Individual contributors will not be ranked by commits or lines of code.
+**Baseline scenarios:** 6
 
-A milestone receives credit only after its acceptance evidence is merged. Percentages are never inferred from time spent or number of issues opened.
+| ID | Scenario | Expected result |
+|---|---|---|
+| SCN-001 | clear corridor | `OK` |
+| SCN-002 | forward obstacle | `OBSTACLE_STOP` |
+| SCN-003 | stale command | `COMMAND_STALE` |
+| SCN-004 | stale sensor | `SENSOR_STALE` |
+| SCN-005 | invalid localization | `LOCALIZATION_INVALID` |
+| SCN-006 | latched emergency stop | `ESTOP_LATCHED` |
+
+## Release
+
+**Latest release:** No simulation-first release recorded
+
+---
+
+Progress reflects accepted deliverables and evidence, not contributor activity, commits, or lines of code.
